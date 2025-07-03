@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Nikita</title>
+    <style>
+        /* Google Font Link */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        /* CSS Style */
+        body {
+            font-family: poppins, sans-serif;
+            background: linear-gradient(to right, #94B4C1 0%, #B33791 100%);
+            color: #fff;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        #contact-section {
+            text-align: center;
+        }
+
+        #contact-section a,
+        #contact-section p {
+            color: white;
+            text-decoration: none;
+        }
+
+        #contact-section a {
+            transition: color 0.3s, text-decoration 0.3s;
+
+        }
+
+        #contact-section a:hover {
+            color: #352e47;
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: white;
+            margin: 10px 0px 40px 0px;
+        }
+
+        #about-container {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            gap: 100px;
+        }
+
+        #about-image img {
+            width: 400px;
+            border-radius: 10%;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        #about-image img:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        #Hobbies h2 {
+            font-size: 20px;
+            padding-left: 20px;
+        }
+
+        #Skills h2 {
+            font: 20px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Nikita Kanwar</h1>
+    <!-- Contact section -->
+    <div id="contact-section">
+        <h2>Contact Me</h2>
+        <p>Email:- <a href="mailto:niktiakanwar@gmail.com">nikitakanwar@gmail.com</a></p>
+    </div>
+    <hr>
+    <!-- About Container -->
+    <div id="about-container">
+        <!-- About Text -->
+        <div id="about-text">
+            <p>Hello! I'm nikita kanwar, a recent graduate in BCA. I'm passionate about frontend web development and
+                love building beautiful, user-friendly websites using HTML, CSS and Javascript. I'm currently sharpening
+                my skills and gaining hands-on experience through internship. Apart from tech , I enjoy creative writing
+                and often express myself through poetry and blogs.</p>
+        </div>
+        <!-- About Image -->
+        <div id="about-image">
+            <img src="https://dianapps.com/blog/wp-content/uploads/2023/03/Untitled-design-40.png" alt="Interest Image">
+        </div>
+    </div>
+    <!-- Hobbies -->
+    <div id="Hobbies">
+        <h2>My Hobbies & Interests</h2>
+        <ul>
+            <li>Web development</li>
+            <li>Creative Writing</li>
+            <li>Playing Badminton</li>
+        </ul>
+    </div>
+    <!-- Skills -->
+    <div id="Skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Javascript</li>
+        </ul>
+    </div>
+</body>
+</html>
