@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins,  sans-serif;
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+}
+
+header {
+    background-color: #e0dfdfec;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+header .navbar {
+    list-style: none;
+    display: flex;
+}
+
+header .navbar li {
+    margin-left: 2rem;
+}
+
+header .navbar a {
+    text-decoration: none;
+    color:#000;
+    font-size: 1.1rem;
+}
+
+header .navbar a:hover {
+    color:gray;
+}
+
+
+#contact-section {
+    padding: 2rem;
+    text-align: center;
+}
+
+#contact-section a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#contact-section a:hover {
+    color:gray;
+}
+
+ #about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    background-color: #fff;
+}
+
+.about-text h2 {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.about-img img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 30%;
+}
+
+
+
+#Hobbies, #Skills {
+    padding: 2rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+ul li {
+    margin: 0.5rem 0;
+}
+
+
+ 
+
+@media (max-width: 1400px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .navbar {
+        margin-top: 1rem;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    header .navbar li {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+  }
+
+    #about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .about-img img {
+        width: 200px;
+        height: 200px;
+    }
+  
+/*
+@media (max-width: 480px) {
+    .about-text h2 {
+        font-size: 1rem;
+    }
+
+    .about-img img {
+        width: 150px;
+        height: 150px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    ul {
+        font-size: 1rem;
+    }
+}  */
