@@ -4,16 +4,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: poppins,  sans-serif;
+    font-family: poppins, sans-serif;
+    list-style: none;
 }
 
-html, body{
-  height: 100%;
-  width: 100%;
+html,
+body {
+    height: 100%;
+    width: 100%;
 }
 
 header {
-    background-color: #e0dfdfec;
+    background-color: #c1c0c0ec;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -38,12 +40,12 @@ header .navbar li {
 
 header .navbar a {
     text-decoration: none;
-    color:#000;
+    color: #000;
     font-size: 1.1rem;
 }
 
 header .navbar a:hover {
-    color:gray;
+    color: gray;
 }
 
 
@@ -59,105 +61,156 @@ header .navbar a:hover {
 }
 
 #contact-section a:hover {
-    color:gray;
+    color: gray;
 }
 
- #about-container {
+#about-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     background-color: #fff;
 }
 
 .about-text h2 {
     font-size: 1.2rem;
     line-height: 1.8;
-    max-width: 600px;
+    max-width: 550px;
 }
 
 .about-img img {
     width: 100%;
     max-width: 400px;
     height: auto;
-    border-radius: 30%;
+    border-radius: 25%;
+    border: 4px solid orange;
+}
+
+#other {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4rem;
+    padding: 2rem 2rem;
+    background-color: #fff;
 }
 
 
-
-#Hobbies, #Skills {
+#Hobbies,
+#Skills {
     padding: 2rem;
     text-align: center;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
     color: #333;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    font-size: 1.1rem;
-}
-
-ul li {
-    margin: 0.5rem 0;
+footer {
+    background-color: #c1c0c0ec;
+    counter-reset: #000;
+    text-align: center;
 }
 
 
- 
+@media (max-width: 1024px) {
 
-@media (max-width: 1400px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    header .navbar {
-        margin-top: 1rem;
-        justify-content: flex-start;
-        flex-direction: column;
-    }
-
-    header .navbar li {
-        margin-left: 0;
-        margin-bottom: 1rem;
-    }
-  }
-
-    #about-container {
+    #about-container,
+    #other {
         flex-direction: column;
         text-align: center;
+        gap: 2rem;
     }
 
     .about-text h2 {
         font-size: 1.1rem;
+        padding: 0 1rem;
+        max-width: 100%;
     }
 
     .about-img img {
-        width: 200px;
-        height: 200px;
+        max-width: 70%;
+        margin: 0 auto;
     }
-  
-/*
-@media (max-width: 480px) {
+
+    #Hobbies,
+    #Skills {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    header .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    header .navbar li {
+        margin: 0.5rem 0;
+    }
+
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    #about-container,
+    #other {
+        padding: 1rem;
+    }
+
+    .about-img img {
+        max-width: 85%;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
     .about-text h2 {
         font-size: 1rem;
     }
 
+    #contact-section {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 1.3rem;
+    }
+
+    header .navbar a {
+        font-size: 0.95rem;
+    }
+
+    .about-text h2 {
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+
     .about-img img {
-        width: 150px;
-        height: 150px;
+        max-width: 95%;
     }
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
-    ul {
-        font-size: 1rem;
+    #Hobbies li,
+    #Skills li {
+        font-size: 0.95rem;
     }
-}  */
+}
