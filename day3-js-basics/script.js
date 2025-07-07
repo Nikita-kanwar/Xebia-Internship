@@ -1,12 +1,21 @@
-let birthYear 
+let birthYear;
 
 while (true) {
-  birthYear = prompt("Enter your Birth Year (4 digits): ");
-  if (birthYear && !isNaN(birthYear) && birthYear.length === 4) {
+  birthYear = prompt(
+    "Enter your Birth Year (4 digits between 1900 and the current year): "
+  );
+  if (
+    birthYear &&
+    !isNaN(birthYear) &&
+    birthYear.length === 4 &&
+    birthYear >= 1900 &&
+    birthYear <= new Date().getFullYear()
+  ) {
     break;
-  } 
-  else {
-    alert("Please enter a valid 4-digit year.");
+  } else {
+    alert(
+      "Please enter a valid 4-digit year between 1900 and the current year."
+    );
   }
 }
 
@@ -30,7 +39,9 @@ let currMonth = currDate.getMonth() + 1;
 let AgeY = currYear - birthYear;
 let AgeM = currMonth - birthMonth;
 
-alert(`Your age is: ${AgeY} years and ${AgeM} months.`);
+AgeY = Math.floor(AgeY + AgeM / 12);
+
+alert(`Your age is: ${AgeY} years.`);
 
 if (AgeY >= 18) {
   alert("You are eligible to vote");
