@@ -5,5 +5,9 @@
 [day3-js-basics](https://nikita-kanwar.github.io/Xebia-Projects/day3-js-basics/).
 <br>
 [day4-todo-app](https://nikita-kanwar.github.io/Xebia-Projects/day4-todo-app).
+<br>
+[day5-responsive-homepage](https://nikita-kanwar.github.io/Xebia-Projects/day5-responsive-homepage/ ).
+
+
 
 
