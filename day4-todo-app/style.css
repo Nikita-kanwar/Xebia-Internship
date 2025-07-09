@@ -1,10 +1,106 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
 
-html, body{
+html, body {
     height: 100%;
     width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#inputbox {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#addbtn {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#addbtn:hover {
+    background-color: #45a049;
+}
+
+.todoList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todoList li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.todoList li:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.deletebtn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deletebtn:hover {
+    background-color: #d32f2f;
+}
+
+#noTasksMessage {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    
+    margin-top: 20px;
+    display: none;
+}
+
+#inputbox:focus {
+    border-color: #000;
+    outline: none;
+}
+
+#addbtn:active {
+    transform: scale(0.98);
 }
