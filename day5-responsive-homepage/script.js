@@ -5,3 +5,10 @@ document.querySelector('form').addEventListener('submit', function (e) {
     
     document.querySelector('form').reset();
 });
+
+document.querySelector('.f-btn').addEventListener('click', function () {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'  
+    });
+});
