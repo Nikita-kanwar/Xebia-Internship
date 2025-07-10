@@ -1,0 +1,17 @@
+nav, ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    gap: 35px;
+}
+
+nav{
+    background-color: violet;
+    padding: 20px;
+}
