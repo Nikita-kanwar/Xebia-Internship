@@ -1,26 +1,25 @@
-.about {
-  padding: 30px 20px;
-  background-color: #fff3e0;
-  width: 100%;
-  max-width: 900px;
-  box-sizing: border-box;
+.about
+{
+    height: 100%;
+    padding: 20px;
+    background-color: rgb(221, 189, 251);
+    text-align: center;
 }
 
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+.about h2{
+    font-size: 30px;
 }
 
-.about p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.about p{
+    padding: 60px;
 }
+ .about h1{
+    font-size: 30px;
+    padding-bottom: 10px;
+ }
 
-.about ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  text-align: left;
-  max-width: 500px;
-  margin: 0 auto;
-  font-size: 1rem;
-}
+ .about ul {
+    font-size: 20px;
+ } 
+
+ 

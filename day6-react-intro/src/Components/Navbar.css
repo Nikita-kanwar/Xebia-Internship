@@ -1,33 +1,26 @@
-.navbar {
-  width: 100%;
+.navbar{
+  padding: 10px;
+  background-color: violet;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background-color: #222;
-  color: white;
-  flex-wrap: wrap;
+}
+.logo{
+  font-size: 30px;
 }
 
-.logo {
-  font-size: 24px;
-}
-
-.links {
+.links{
   display: flex;
-  gap: 20px;
-  font-size: 18px;
+  justify-content: space-between;
+  gap: 40px;
+  padding-right: 20px;
 }
 
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .links {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-  }
+ul{
+  list-style: none;
 }
+ul a{
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+} 
+

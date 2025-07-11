@@ -1,11 +1,20 @@
-import React from 'react';
-import './About'
+import React from "react";
+import './About.css'
 
 function About() {
   return (
-    <section className="about">
+    <section id="about" className="about">
       <h2>About Me</h2>
-      <p>Hello! I'm Nikita Kanwar, an aspiring frontend developer and content writer.</p>
+      <p>
+        Hello! I'm Nikita Kanwar, a recent graduate in BCA. I'm passionate about
+        frontend web development and love building beautiful, user-friendly
+        websites using HTML, CSS and Javascript. I'm currently sharpening my
+        skills and gaining hands-on experience through internship. Apart from
+        tech , I enjoy creative writing and often express myself through poetry
+        and blogs.
+      </p>
+              <h1>Hobbies or interests </h1>
+
       <ul>
         <li>Writing poetry</li>
         <li>Badminton</li>

@@ -1,24 +1,21 @@
-.hero {
-  padding: 40px 20px;
-  background-color: #e0f7fa;
-  width: 100%;
-  max-width: 900px;
-  box-sizing: border-box;
+.hero{
+    height: 100%;
+    padding: 20px;
+    background: rgb(220, 218, 218);
+    text-align: center;
+    align-items: center;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.hero p{
+    padding: 60px;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+.hero img{
+    width: 400px;
+    height: 400px;
 }
 
-.hero-image {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  border-radius: 10px;
-}
+
+ 
+
+ 

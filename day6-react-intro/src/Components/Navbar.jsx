@@ -3,12 +3,12 @@ import './Navbar.css'
 
 function Navbar() {
   return (
-    <nav className="navbar">
-      <h2 className="logo">MySite</h2>
-      <div className="links">
-        <span>Home</span>
-        <span>About</span>
-      </div>
+    <nav id='navbar' className="navbar">
+      <h2 className="logo">My Portfolio Site</h2>
+       <ul className="links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+       </ul>
     </nav>
   );
 }
