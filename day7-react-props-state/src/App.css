@@ -1,0 +1,63 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.counter {
+  background-color: #222;
+  border-radius: 8px;
+  color: #fff;
+  padding: 20px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toggle {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+  padding: 12px 20px;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #444;
+  cursor: pointer;
+}
+
+.User-card {
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid black;
+  margin: 10px;
+  background-color: #555;
+}
+
