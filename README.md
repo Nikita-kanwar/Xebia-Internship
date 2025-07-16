@@ -14,6 +14,12 @@
 - [day6-react-intro ](https://nikita-kanwar.github.io/Xebia-Projects/day6-react-intro ).
 ## Day - 7
 - [day7-react-props-state](https://nikita-kanwar.github.io/Xebia-Projects/day7-react-props-state ).
+## Day - 8
+- [day-react-forms-conditionals](https://nikita-kanwar.github.io/Xebia-Projects/day-react-forms-conditionals ).
+## Day - 9
+- [Dynamic User List UI ](https://nikita-kanwar.github.io/Xebia-Projects/Dynamic User List UI  ).
+
+
 
 
  
