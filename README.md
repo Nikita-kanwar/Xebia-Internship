@@ -17,7 +17,7 @@
 ## Day - 8
 - [day-react-forms-conditionals](https://nikita-kanwar.github.io/Xebia-Projects/day-react-forms-conditionals ).
 ## Day - 9
-- [Dynamic User List UI ](https://nikita-kanwar.github.io/Xebia-Projects/Dynamic User List UI  ).
+- [Dynamic-User-List-UI ](https://nikita-kanwar.github.io/Xebia-Projects/Dynamic-User-List-UI  ).
 
 
 
