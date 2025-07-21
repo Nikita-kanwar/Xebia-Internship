@@ -15,11 +15,11 @@
 ## Day - 7
 - [day7-react-props-state](https://nikita-kanwar.github.io/Xebia-Projects/day7-react-props-state ).
 ## Day - 8
-- [day-react-forms-conditionals](https://nikita-kanwar.github.io/Xebia-Projects/day-react-forms-conditionals ).
+- [day-react-forms-conditionals](https://nikita-kanwar.github.io/Xebia-Projects/day8-react-forms-conditionals ).
 ## Day - 9
-- [Dynamic-User-List-UI ](https://nikita-kanwar.github.io/Xebia-Projects/Dynamic-User-List-UI  ).
+- [Dynamic-User-List-UI ](https://nikita-kanwar.github.io/Xebia-Projects/day9-react-lists-map/  ).
 ## Day - 10
-- [Fetch and Display Users from API ](https://nikita-kanwar.github.io/Xebia-Projects/day-react-useeffect-fetch).
+- [Fetch and Display Users from API ](https://nikita-kanwar.github.io/Xebia-Projects/day10-react-useeffect-fetch).
 ## Day - 11
 - [Build a 3-Page React App with Navigation ](https://nikita-kanwar.github.io/Xebia-Projects/day11-react-router-multipage/ ).
 
