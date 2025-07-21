@@ -1,8 +1,8 @@
 const Contact = () => {
   return (
-    <div>
+    <div className="contact">
       <h1>Contact Us</h1>
-      <section>
+      
         <form className="contact-form">
           <input type="text" placeholder="Name" />
           <br />
@@ -12,7 +12,7 @@ const Contact = () => {
           <br />
           <button type="submit">Send</button>
         </form>
-      </section>
+      
     </div>
   );
 };
