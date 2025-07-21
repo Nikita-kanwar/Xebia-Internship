@@ -2,7 +2,7 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to the Home Page</h1>
-      <p>This is a simple React Router example.</p>
+      <p>This is a Routing Project with different Pages</p>
     </div>
   );
 };

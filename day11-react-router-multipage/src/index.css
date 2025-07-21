@@ -1,1 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f4e8e8;
+}
+
+h1{
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+}
+
+p {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Navbar */
+
+nav {
+  background-color: #555;
+  padding: 12px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: background-color 0.2s;
+  border-radius: 5px;
+}
+
+nav li a:hover {
+  background-color: #333;
+}
 
