@@ -22,6 +22,8 @@
 - [Fetch and Display Users from API ](https://nikita-kanwar.github.io/Xebia-Projects/day10-react-useeffect-fetch).
 ## Day - 11
 - [Build a 3-Page React App with Navigation ](https://nikita-kanwar.github.io/Xebia-Projects/day11-react-router-multipage/ ).
+## Day - 12
+- [Build a Signup Form ](https://nikita-kanwar.github.io/Xebia-Projects/day13-react-forms-validation/  ).
 
 
 
