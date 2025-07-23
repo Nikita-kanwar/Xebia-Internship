@@ -1,11 +1,22 @@
-import React from 'react'
+import React from "react";
 
-const InputField = () => {
+const InputField = ({ label, type, name, value, onChange, error }) => {
   return (
-    <div>
-      
+    <div style={{ marginBottom: "1rem" }}>
+      <label>
+        {label}
+        <br />
+        <input
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          style={{ padding: "8px", width: "100%" }}
+        />
+      </label>
+      {error && <p style={{ color: "red", margin: 0 }}>{error}</p>}
     </div>
-  )
-}
+  );
+};
 
-export default InputField
+export default InputField;
