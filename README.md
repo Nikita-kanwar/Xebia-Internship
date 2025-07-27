@@ -17,6 +17,16 @@ It highlights my hands-on experience in frontend development using React and Jav
 ## 📅 Internship Duration
 On-site  | 1 July 2025 - 30 September 2025 
 
+## 📁 Daily Work & Projects
+
+Here are the folders organized by day or topic, containing the projects, tasks, and code I worked on during the internship.
+## Day - 1
+- [Day 01 - HTML Basics]()
+
+
+
+
+
 
 
 
