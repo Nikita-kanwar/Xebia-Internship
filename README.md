@@ -1,3 +1,8 @@
+This repository documents my internship journey at Xebia. It includes daily and bi-daily updates on the concepts I've learned, code snippets, practice tasks, and mini exercises. From frontend development with React and JavaScript to using tools like Git, GitHub, and MUI, this repo reflects my hands-on learning and technical progress throughout the internship.
+
+
+
+
 ## Day - 1
 
 - [day1-about-me](https://nikita-kanwar.github.io/Xebia-Projects/day1-about-me).
