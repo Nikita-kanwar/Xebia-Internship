@@ -21,7 +21,57 @@ On-site  | 1 July 2025 - 30 September 2025
 
 Here are the folders organized by day or topic, containing the projects, tasks, and code I worked on during the internship.
 ## Day - 1
-- [Day 01 - HTML Basics]()
+- [📘 About Me Web Page](./day1-about-me/)
+
+## Day - 2 
+
+- [📘 About Me Page Styled](./day2-about-me-styled/)
+
+## Day - 3
+
+- [📘 Simple Age Checker]
+
+## Day - 4
+
+- [📘 Todo List App]
+
+## Day - 5
+
+- [📘 Responsive Home Page]
+
+## Day - 6
+
+- [📘 Build a Multi-Component React App]
+
+## Day - 7
+
+- [📘 Counter App]
+
+## Day - 8
+
+- [📘 React Login Form]
+
+## Day - 9
+
+- [📘 Dynamic User List UI]
+
+## Day - 10
+
+- [📘 Fetch and Display Users from API ]
+
+## Day - 11
+
+- [📘 Build a 3-Page React App with Navigation ]
+
+## Day - 12
+
+- [📘 Signup Form ]
+
+
+
+
+
+
 
 
 
