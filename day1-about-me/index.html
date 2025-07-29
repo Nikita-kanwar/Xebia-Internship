@@ -1,86 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Me</title>
-
+    <!-- Internal CSS -->
     <style>
-        body {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
+      body {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+      }
 
-        }
+      h1,
+      h2 {
+        font-family: sans-serif;
+        font-style: oblique;
+        margin: 20px;
+      }
 
-        h1,
-        h2 {
-            font-family: sans-serif;
-            font-style: oblique;
-            margin: 20px;
-        }
+      p {
+        margin: 20px;
+        font-family: sans-serif;
+      }
 
-        p {
-            margin: 20px;
-            font-family: sans-serif;
-        }
+      img {
+        margin: 20px;
+        border: 2px solid #fff;
+        border-radius: 20px;
+        transition: transfrom 0.3s ease;
+        cursor: pointer;
+      }
 
-        img {
-            margin: 20px;
-            border: 2px solid #fff;
-            border-radius: 20px;
-            transition: transfrom 0.3s ease;
-            cursor: pointer;
-        }
+      img:hover {
+        transform: scale(1.1);
+      }
 
-        img:hover {
-            transform: scale(1.1);
-        }
+      ol {
+        font-family: sans-serif;
+        list-style: none;
+      }
 
-        ol {
-            font-family: sans-serif;
-            list-style: none;
-        }
-        a{
-            text-decoration: none;
-            color:#111;
-        }
+      a {
+        text-decoration: none;
+        color: #111;
+      }
 
-        button{
-             padding: 10px;
-            font-size: 20px;
-            border-radius: 10px;
-        }
+      button {
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 10px;
+      }
 
-        button:hover{
-            background-color: #666;
-        }
+      button:hover {
+        background-color: #666;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <!-- About Me -->
     <section class="aboutMe">
-        <h1>Nikita Kanwar</h1>
-        <p>Hello! I'm nikita kanwar, a recent graduate in BCA. I'm passionate about frontend web development and
-            love building beautiful, user-friendly websites using HTML, CSS and Javascript. I'm currently sharpening
-            my skills and gaining hands-on experience through internship. Apart from tech , I enjoy creative writing
-            and often express myself through poetry and blogs.</p>
-        <h2>hobbies or interests </h2>
-        <ol>
-            <li>Web development</li>
-            <li>Creative Writing</li>
-            <li>Playing Badminton</li>
-        </ol>
+      <h1>Nikita Kanwar</h1>
+      <p>
+        Hello! I'm nikita kanwar, a recent graduate in BCA. I'm passionate about
+        frontend web development and love building beautiful, user-friendly
+        websites using HTML, CSS and Javascript. I'm currently sharpening my
+        skills and gaining hands-on experience through internship. Apart from
+        tech , I enjoy creative writing and often express myself through poetry
+        and blogs.
+      </p>
+      <h2>hobbies or interests</h2>
+      <ol>
+        <li>Web development</li>
+        <li>Creative Writing</li>
+        <li>Playing Badminton</li>
+      </ol>
 
-        <img src="https://images.unsplash.com/photo-1749947393466-cb5e81bc943d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
-            alt="" height="300px" width="200px">
+      <img
+        src="https://images.unsplash.com/photo-1749947393466-cb5e81bc943d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
+        alt=""
+        height="300px"
+        width="200px"
+      />
     </section>
+    <!-- Contact Me -->
     <section class="contactMe">
-        <h1>Contact ME</h1>
-       <Button><a href="mailto:nikita@gmail.com">Send Email</a> </Button>
+      <h1>Contact ME</h1>
+      <button><a href="mailto:nikita@gmail.com">Send Email</a></button>
     </section>
-
-</body>
-
+  </body>
 </html>
