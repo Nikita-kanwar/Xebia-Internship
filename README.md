@@ -36,10 +36,11 @@ Here are the folders organized by day or topic, containing the projects, tasks, 
 
 ---
 
-### 📌 Day 3 – Simple Age Checker
+### 📌 Day 3 – Simple Age Checker & Calculator
 - [📘 View Project](./day3-age-checker/)
+- [📘 View Project](./day3-calculator/)
 - **Description**:  
-  Built a JavaScript-based age checker where the user inputs their birth year and gets their age as output. This task helped reinforce `prompt`, basic variables, `Date` object, conditional logic, and `alert()`/`console.log()` for output.
+  Built two JavaScript projects: an Age Checker that calculates a user’s age and voting eligibility, and a Simple Calculator that performs basic arithmetic based on user input. Practiced prompt(), conditionals, Date object, and output methods.
 
 ---
 
@@ -60,21 +61,55 @@ Here are the folders organized by day or topic, containing the projects, tasks, 
 ### 📌 Day 6 – Multi-Component React App
 - [📘 View Project](./day6-multi-component-app/)
 - **Description**:  
-  Started building with React.js. Created a multi-component app structure with reusable components like Header, Footer, and Content. Learned about JSX, `props`, and component-based architecture.
-
+ Started building with React.js by creating a multi-component app structure with reusable components like Navbar, Hero, and About. Learned about JSX, component composition, and basic props usage.
 ---
 
 ### 📌 Day 7 – Counter App
 - [📘 View Project](./day7-counter-app/)
 - **Description**:  
-  Created a simple counter app using React. Used `useState` to manage count, and created buttons to increment, decrement, and reset. Practiced basic state management and UI updates using hooks.
+ Created a React app with multiple components demonstrating key React concepts. Used useState for a Counter and Toggle message components to manage state, and practiced passing data via props in UserCard components. Strengthened understanding of hooks, component reuse, and UI updates.
 
 
+### 📌 Day 8 – Login Form with Conditional Rendering
+- [📘 View Project](./day8)
+- **Description**:
+Built a simple login form in React using useState to manage form input and login state. The form includes Email and Password fields, and a login button. On submitting non-empty fields, the app conditionally renders a welcome message. Practiced state handling, conditional rendering, and basic form validations.
 
+📌 Day 9 – User List with .map()
+📘 View Project
 
+- **Description**:
+Created a dynamic user list using React. Used .map() to display multiple UserCard components from an array. Practiced props, conditional rendering, and component reusability.
 
+📌 Day 10 – Fetching & Displaying Users with useEffect
+📘 View Project
 
+Description:
+Built a React component that fetches user data from an external API using useEffect and fetch. Displayed user name, email, and username in a structured layout. Added loading state handling. Followed clean folder structure and component separation.
 
+📌 Day 11 – Multi-Page React App with React Router
+📘 View Project
+
+Description:
+Built a 3-page React app with routing using react-router-dom. Included Home, About, and Contact pages with a shared Navbar for navigation. Practiced setting up routes and component-based structure for multi-page React applications.
+
+📌 Day 12 – React Forms Validation
+📘 View Project
+
+Description:
+Built a signup form using React with essential field validations. The form uses a reusable InputField component for cleaner code. Displays error messages for invalid inputs and shows submitted data after successful validation. Practiced handling state, props, and conditional rendering in forms.
+
+📝 Mini Project 1 – Simple Task Manager
+📘 View Project
+
+Description:
+Created a Task Manager using React and Material UI with features like add, delete, mark done/undone, and filter tasks (All/Completed/Incomplete) using local state.
+
+📌 Mini Project 2 – User Directory
+📘 View Project
+
+Description:
+Built a user directory that fetches dummy user data from reqres.in using useEffect and fetch. Displayed users in Material UI Cards with a “Load More” pagination. Clicking on a user opens a modal showing detailed information.
 
 
 
