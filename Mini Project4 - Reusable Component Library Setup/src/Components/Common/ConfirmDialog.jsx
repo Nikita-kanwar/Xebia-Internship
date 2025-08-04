@@ -1,4 +1,3 @@
-// src/components/common/ConfirmDialog.jsx
 import React from 'react';
 
 const ConfirmDialog = ({ message, onConfirm, onCancel }) => {

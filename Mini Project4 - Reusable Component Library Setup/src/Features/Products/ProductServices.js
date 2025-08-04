@@ -1,4 +1,3 @@
-// Simulate fetching products from a fake API
 export const fetchProducts = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {

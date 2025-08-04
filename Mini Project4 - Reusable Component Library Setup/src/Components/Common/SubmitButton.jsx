@@ -1,4 +1,3 @@
-// src/components/common/SubmitButton.jsx
 import React from 'react';
 
 const SubmitButton = ({ label, onClick, disabled = false }) => {
