@@ -9,9 +9,6 @@ On-site  | 1 July 2025 - 30 September 2025
 
 ## 📁 Daily Work & Projects
 
-Here are the folders organized by day or topic, containing the projects, tasks, and code I worked on during the internship.
-
-
 ### 📌 Day 1 – About Me Web Page
 - [📘 View Project](./day1-about-me)
 ---
