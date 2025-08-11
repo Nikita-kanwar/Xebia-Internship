@@ -12,7 +12,6 @@ console.log("Reversed:", reversed);
 
 // Task 2: Replace spaces with dashes
 
-
 const sentence = "this is a test";
 const withDashes = sentence.replace(/ /g, "-");
 console.log(withDashes); // "this-is-a-test"

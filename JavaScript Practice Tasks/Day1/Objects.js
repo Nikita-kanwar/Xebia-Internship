@@ -11,6 +11,7 @@ const { id, name1, grade } = student;
 
 console.log("ID:", id);
 console.log("Name:", name1);
+
 console.log("Grade:", grade);
 
 // Mini Task 2: Create a function that uses rest parameters to sum numbers
