@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Greeting App</title>
+</head>
+<body>
+    <h1>Employee Greeting App</h1>
+
+    <button id="emp1Btn">Greet Employee 1</button>
+    <button id="emp2Btn">Greet Employee 2</button>
+    <button id="callBtn">Instant Call Greeting</button>
+
+    <script>
+        function greet(message) {
+            alert(`${message} I'm ${this.name}, working as ${this.role}`);
+        }
+
+        const emp1 = { name: "Nikita", role: "Frontend Developer" };
+        const emp2 = { name: "Raj", role: "UI/UX Designer" };
+
+        document.getElementById("emp1Btn")
+            .addEventListener("click", greet.bind(emp1, "Hello!"));
+
+        document.getElementById("emp2Btn")
+            .addEventListener("click", greet.bind(emp2, "Hi there!"));
+
+        document.getElementById("callBtn").addEventListener("click", function () {
+            greet.call(emp1, "This is a call method greeting!");
+        });
+    </script>
+</body>
+</html>
