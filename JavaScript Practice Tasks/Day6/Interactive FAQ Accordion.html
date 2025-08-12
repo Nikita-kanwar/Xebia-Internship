@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive FAQ Accordion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+        }
+
+        .faq-item {
+            background: #2a2a2a;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 15px;
+            font-weight: bold;
+            background: #333;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            border-top: 1px solid #444;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            background: #00d4ff;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FAQ Accordion</h1>
+    <div id="faqContainer"></div>
+
+    <script src="Interactive FAQ Accordion.js"></script>
+</body>
+</html>
