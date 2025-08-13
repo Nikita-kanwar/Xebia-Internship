@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Todo List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    #todo-input {
+      padding: 8px;
+      width: 200px;
+    }
+    #add-btn {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #f5f5f5;
+      padding: 10px;
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    /* Bubbling click effect */
+    .clicked {
+      background: lightyellow;
+    }
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dynamic Todo List</h1>
+  <input type="text" id="todo-input" placeholder="Enter a task">
+  <button id="add-btn">Add Task</button>
+
+  <ul id="todo-list"></ul>
+
+<script src="DynamicTodo.js"></script>
+
+</body>
+</html>
