@@ -1,7 +1,10 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+const AdminPanel = () => {
+  return (
+    <div className="admin">
+      <h2>Admin Panel</h2>
+      <p>Only admins can see this page.</p>
+    </div>
+  );
+};
 
-export default function AdminPanel() {
-  const { user } = useContext(AuthContext);
-  return <h2>Welcome Admin {user?.email}</h2>;
-}
+export default AdminPanel;

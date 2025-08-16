@@ -4,31 +4,34 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      setUser(storedUser);
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const username = localStorage.getItem("username");
+    if (token && username) {
+      setUser({ token, role, username });
     }
-  }, [token]);
+    setLoading(false);
+  }, []);
 
-  const login = (userData, jwt) => {
-    setUser(userData);
-    setToken(jwt);
-    localStorage.setItem("token", jwt);
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = (data) => {
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+    localStorage.setItem("username", data.username);
+    setUser(data);
   };
 
   const logout = () => {
-    setUser(null);
-    setToken("");
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

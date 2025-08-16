@@ -1,7 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-export default function Profile() {
+const Profile = () => {
   const { user } = useContext(AuthContext);
-  return <h2>Profile: {user?.email} | Role: {user?.role}</h2>;
-}
+  return (
+    <div className="profile">
+      <h2>Profile</h2>
+      <p>Username: {user.username}</p>
+      <p>Role: {user.role}</p>
+    </div>
+  );
+};
+
+export default Profile;

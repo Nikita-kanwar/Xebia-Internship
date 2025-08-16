@@ -1,96 +1,53 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+const Register = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("user");
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [loading, setLoading] = useState(false);
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) {
-      alert("Email and password are required.");
-      return;
-    }
-    if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match.");
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    if (users.find((u) => u.username === username)) {
+      alert("User already exists");
       return;
     }
 
-    setLoading(true);
-    try {
-      // reqres.in REGISTER endpoint (fake API)
-      // Works with: email = "eve.holt@reqres.in", password = "pistol"
-      await axios.post("https://reqres.in/api/register", {
-        email: form.email,
-        password: form.password,
-      });
-
-      alert("Registration successful! Please log in.");
-      navigate("/login");
-    } catch (err) {
-      // Common case: reqres returns 400 for emails it doesn't know
-      alert(
-        "Registration failed on reqres.in (test API). Try:\nemail: eve.holt@reqres.in\npassword: pistol"
-      );
-    } finally {
-      setLoading(false);
-    }
+    users.push({ username, password, role });
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registration successful!");
+    navigate("/login");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <h2>Register</h2>
-
       <input
-        name="name"
-        placeholder="Full Name"
-        value={form.name}
-        onChange={onChange}
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={onChange}
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        autoComplete="username"
         required
       />
       <input
-        name="password"
         type="password"
         placeholder="Password"
-        value={form.password}
-        onChange={onChange}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        autoComplete="new-password"
         required
       />
-      <input
-        name="confirmPassword"
-        type="password"
-        placeholder="Confirm Password"
-        value={form.confirmPassword}
-        onChange={onChange}
-        required
-      />
-
-      <button type="submit" disabled={loading}>
-        {loading ? "Registering..." : "Register"}
-      </button>
-
-      <p style={{ textAlign: "center", marginTop: 10 }}>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+      <select value={role} onChange={(e) => setRole(e.target.value)}>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">Register</button>
     </form>
   );
-}
+};
+
+export default Register;

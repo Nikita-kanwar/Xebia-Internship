@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-export default function Navbar() {
+const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+
   return (
     <nav>
       <Link to="/">Home</Link>
-      {user && <Link to="/dashboard">Dashboard</Link>}
-      {user?.role === "admin" && <Link to="/admin">Admin Panel</Link>}
-      {user && <Link to="/profile">Profile</Link>}
       {user ? (
-        <button onClick={logout}>Logout</button>
+        <>
+          <Link to="/dashboard">Dashboard</Link>
+          {user.role === "admin" && <Link to="/admin">Admin Panel</Link>}
+          <Link to="/profile">Profile</Link>
+          <button onClick={logout}>Logout</button>
+        </>
       ) : (
         <>
           <Link to="/login">Login</Link>
@@ -20,4 +23,6 @@ export default function Navbar() {
       )}
     </nav>
   );
-}
+};
+
+export default Navbar;
