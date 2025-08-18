@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, select, button {
+      margin: 5px 0;
+      padding: 5px;
+      width: 200px;
+    }
+    section {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Expense Tracker</h1>
+
+  <input type="number" placeholder="Amount"> <br>
+  <input type="text" placeholder="Category"> <br>
+  <input type="date" placeholder="Date"> <br>
+
+  <select>
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select> <br>
+
+  <button>Add Transaction</button>
+
+  <section id="balance">
+    <h3>Balance: ₹0</h3>
+  </section>
+
+  <section id="total-income">
+    <h3>Total Income: ₹0</h3>
+  </section>
+
+  <section id="total-expense">
+    <h3>Total Expense: ₹0</h3>
+  </section>
+
+  <h3>Transactions</h3>
+  <ul id="transaction-list"></ul>
+
+</body>
+</html>

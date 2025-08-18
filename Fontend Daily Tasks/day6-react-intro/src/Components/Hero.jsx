@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hero.css";
 
-function Hero({ title = "Welcome to MySite" }) {
+function Hero({ title  }) {
   return (
     <section id="hero" className="hero">
       <h1 className="">{title}</h1>
