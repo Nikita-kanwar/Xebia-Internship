@@ -27,8 +27,8 @@
       console.log(`${this.owner}'s current balance: $${this.balance}`);
     };
 
-    const user1 = new Account("Alice", 500);
-    const user2 = new Account("Bob", 1000);
+    const user1 = new Account("Nikita", 500);
+    const user2 = new Account("Suman", 1000);
 
     user1.deposit(200);
     user1.withdraw(100);
