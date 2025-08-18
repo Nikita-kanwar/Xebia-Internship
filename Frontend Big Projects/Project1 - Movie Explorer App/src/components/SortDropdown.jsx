@@ -1,4 +1,3 @@
-// src/components/SortDropdown.jsx
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";

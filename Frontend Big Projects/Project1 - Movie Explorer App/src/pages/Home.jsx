@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies, setCurrentPage } from "../features/movies/movieSlice";

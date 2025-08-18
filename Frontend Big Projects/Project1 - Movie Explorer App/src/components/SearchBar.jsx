@@ -1,4 +1,3 @@
-// src/components/SearchBar.jsx
 import React, { useState } from "react";
 import { TextField, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";

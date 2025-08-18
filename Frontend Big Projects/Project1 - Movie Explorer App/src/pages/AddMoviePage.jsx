@@ -1,4 +1,3 @@
-// src/components/AddMovieForm.jsx
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useDispatch } from "react-redux";

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Typography, CircularProgress } from "@mui/material";
 
-const API_KEY = "YOUR_TMDB_API_KEY"; // Replace with your TMDB key
+const API_KEY = ""; 
 
 const MovieDetail = () => {
   const { id } = useParams();
