@@ -42,7 +42,7 @@ function outer() {
     console.log(innerVar); //  Access inner variable
   }
   inner();
-  // console.log(innerVar); Error: innerVar is not defined here
+  // console.log(innerVar); // innerVar is not defined here
 }
 outer();
 
