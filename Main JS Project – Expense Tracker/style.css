@@ -1,17 +1,21 @@
-:root {
-  --bg: #f4f4f9;
-  --fg: #111;
-  --card: #fff;
-  --muted: #f8f9fa;
-  --border: #ddd;
-  --primary: #007bff;
+ :root {
+  --bg: #FBFBFB;
+  --fg: #000;
+  --card: #E8F9FF;
+  --muted: #C5BAFF;
+  --border: #C4D9FF;
+  --primary: #042344;
   --danger: #e53935;
 }
 
-* { box-sizing: border-box; }
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+  }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family:sans-serif;
   background: var(--bg);
   color: var(--fg);
   margin: 0;
@@ -24,7 +28,7 @@ h1 {
 }
 
 .container {
-  max-width: 760px;
+  max-width:800px;
   margin: auto;
   background: var(--card);
   padding: 20px;
@@ -77,6 +81,8 @@ button.primary:hover { opacity: 0.92; }
   background: var(--muted);
   border-radius: 10px;
 }
+
+
 
 .filters {
   display: flex;
@@ -160,10 +166,10 @@ li {
   color: white;
   transition: 0.2s;
 }
-.extra-features button:hover { opacity: 0.9; }
+.extra-features button:hover { opacity: 0.9; } */
 
-/* Dark Mode */
-body.dark-mode {
+/* Dark Mode*/
+ body.dark-mode {
   --bg: #0f1115;
   --fg: #f5f5f5;
   --card: #171a21;
@@ -182,4 +188,4 @@ body.dark-mode select {
 
 body.dark-mode li {
   background: #202635;
-}
+} 

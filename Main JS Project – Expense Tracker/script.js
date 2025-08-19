@@ -1,6 +1,3 @@
-// -------------------------------
-// State & DOM Refs
-// -------------------------------
 let transactions = [];
 
 const amountInput = document.getElementById("amount");
@@ -30,19 +27,20 @@ let usdRate = null; // INR -> USD
 // Chart
 let chart;
 
-// -------------------------------
-// Utilities
-// -------------------------------
+
 function saveTransactions() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
+
 function loadTransactions() {
   const data = localStorage.getItem("transactions");
   transactions = data ? JSON.parse(data) : [];
 }
+
 function saveTheme() {
   localStorage.setItem("darkMode", isDarkMode ? "true" : "false");
 }
+
 function loadTheme() {
   const savedTheme = localStorage.getItem("darkMode");
   if (savedTheme === "true") {
@@ -50,6 +48,7 @@ function loadTheme() {
     isDarkMode = true;
   }
 }
+
 function formatMoneyINR(n) {
   return new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 }).format(n);
 }
@@ -238,9 +237,7 @@ function resetForm() {
   typeInput.value = "income";
 }
 
-// -------------------------------
-// Event Listeners & Init
-// -------------------------------
+
 addBtn.addEventListener("click", addTransaction);
 filterType.addEventListener("change", renderTransactions);
 searchCategory.addEventListener("input", renderTransactions);
@@ -260,7 +257,7 @@ convertCurrencyBtn.addEventListener("click", async () => {
   showUSD = !showUSD;
   convertCurrencyBtn.textContent = showUSD
     ? "₹ Show Balance in INR"
-    : "💵 Show Balance in USD";
+    : "Show Balance in USD";
   renderTransactions();
 });
 
