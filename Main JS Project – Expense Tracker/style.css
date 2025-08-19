@@ -166,17 +166,17 @@ li {
   color: white;
   transition: 0.2s;
 }
-.extra-features button:hover { opacity: 0.9; } */
+.extra-features button:hover { opacity: 0.9; }
 
 /* Dark Mode*/
  body.dark-mode {
-  --bg: #0f1115;
+  --bg: #444;
   --fg: #f5f5f5;
-  --card: #171a21;
-  --muted: #1e232d;
-  --border: #303745;
-  --primary: #4da3ff;
-  --danger: #ef5350;
+  --card: #333;
+  --muted: #555;
+  --border: #111;
+  --primary: #444;
+  --danger: #fff;
 }
 
 body.dark-mode input,

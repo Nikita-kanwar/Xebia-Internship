@@ -16,7 +16,7 @@ const expenseDiv = document.querySelector(".summary div:nth-child(3)");
 const filterType = document.getElementById("filterType");
 const searchCategory = document.getElementById("searchCategory");
 
-// Bonus: theme & currency
+//  theme & currency
 const toggleThemeBtn = document.getElementById("toggleTheme");
 const convertCurrencyBtn = document.getElementById("convertCurrency");
 
@@ -70,13 +70,10 @@ async function fetchUSDRate() {
   }
 }
 
-// -------------------------------
-// Rendering
-// -------------------------------
+
 function renderTransactions() {
   transactionList.innerHTML = "";
 
-  // Apply filter + search to list (summary/chart use ALL data)
   const filtered = transactions.filter(tx => {
     if (filterType.value !== "all" && tx.type !== filterType.value) return false;
     const q = searchCategory.value.trim().toLowerCase();
@@ -85,7 +82,7 @@ function renderTransactions() {
   });
 
   if (filtered.length === 0) {
-    transactionList.innerHTML = "<li>No matching transactions...</li>";
+    transactionList.innerHTML = "<li>No matching transaction</li>";
   } else {
     filtered.forEach(tx => {
       const li = document.createElement("li");
@@ -125,8 +122,8 @@ function renderTransactions() {
     });
   }
 
-  updateSummary();  // based on ALL transactions
-  updateChart();    // based on ALL transactions
+  updateSummary();  
+  updateChart();    
 }
 
 function updateSummary() {
@@ -159,7 +156,7 @@ function updateChart() {
   const { income, expense } = getTotals(transactions);
   const ctx = document.getElementById("expenseChart").getContext("2d");
 
-  // Optionally convert chart values when USD toggle is on
+  // Optionally convert chart values when USD toggle 
   const values = showUSD && usdRate
     ? [income * usdRate, expense * usdRate]
     : [income, expense];
@@ -173,7 +170,6 @@ function updateChart() {
       datasets: [
         {
           data: values,
-          // No explicit colors to keep it simple & accessible theme-wise
         }
       ]
     },
@@ -196,9 +192,7 @@ function updateChart() {
   });
 }
 
-// -------------------------------
-// Mutations
-// -------------------------------
+
 function addTransaction() {
   const amount = parseFloat(amountInput.value);
   const category = categoryInput.value.trim();
@@ -242,18 +236,15 @@ addBtn.addEventListener("click", addTransaction);
 filterType.addEventListener("change", renderTransactions);
 searchCategory.addEventListener("input", renderTransactions);
 
-// Bonus: Theme toggle
 toggleThemeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   isDarkMode = document.body.classList.contains("dark-mode");
   saveTheme();
 });
 
-// Bonus: Currency toggle (INR <-> USD)
 convertCurrencyBtn.addEventListener("click", async () => {
-  // If first time, fetch rate
   if (!usdRate) await fetchUSDRate();
-  if (!usdRate) return; // fetch failed
+  if (!usdRate) return; 
   showUSD = !showUSD;
   convertCurrencyBtn.textContent = showUSD
     ? "₹ Show Balance in INR"
@@ -261,18 +252,15 @@ convertCurrencyBtn.addEventListener("click", async () => {
   renderTransactions();
 });
 
-// Prefill date with today for convenience
 (function setToday() {
   const today = new Date().toISOString().slice(0, 10);
   dateInput.value = today;
 })();
 
-// Load state & (optional) demo seed if first run
 loadTheme();
 loadTransactions();
 
 if (transactions.length === 0) {
-  // Seed data for first-time UX (can remove if you want empty start)
   transactions = [
     { id: 1, type: "income",  amount: 5000, category: "Salary",    date: "2025-08-01" },
     { id: 2, type: "income",  amount: 2000, category: "Freelance", date: "2025-08-05" },
@@ -282,5 +270,4 @@ if (transactions.length === 0) {
   ];
   saveTransactions();
 }
-
 renderTransactions();
