@@ -9,7 +9,7 @@ const transactionList = document.getElementById("transactionList");
 
 // Summary
 const balanceDiv = document.querySelector(".summary div:nth-child(1)");
-const incomeDiv  = document.querySelector(".summary div:nth-child(2)");
+const incomeDiv = document.querySelector(".summary div:nth-child(2)");
 const expenseDiv = document.querySelector(".summary div:nth-child(3)");
 
 // Filters
@@ -22,11 +22,10 @@ const convertCurrencyBtn = document.getElementById("convertCurrency");
 
 let isDarkMode = false;
 let showUSD = false;
-let usdRate = null; // INR -> USD
+let usdRate = null;
 
 // Chart
 let chart;
-
 
 function saveTransactions() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -53,7 +52,10 @@ function formatMoneyINR(n) {
   return new Intl.NumberFormat("en-IN", { maximumFractionDigits: 2 }).format(n);
 }
 function formatMoneyUSD(n) {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n);
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(n);
 }
 function displayAmount(number) {
   if (showUSD && usdRate) return formatMoneyUSD(number * usdRate);
@@ -70,12 +72,12 @@ async function fetchUSDRate() {
   }
 }
 
-
 function renderTransactions() {
   transactionList.innerHTML = "";
 
-  const filtered = transactions.filter(tx => {
-    if (filterType.value !== "all" && tx.type !== filterType.value) return false;
+  const filtered = transactions.filter((tx) => {
+    if (filterType.value !== "all" && tx.type !== filterType.value)
+      return false;
     const q = searchCategory.value.trim().toLowerCase();
     if (q && !tx.category.toLowerCase().includes(q)) return false;
     return true;
@@ -84,7 +86,7 @@ function renderTransactions() {
   if (filtered.length === 0) {
     transactionList.innerHTML = "<li>No matching transaction</li>";
   } else {
-    filtered.forEach(tx => {
+    filtered.forEach((tx) => {
       const li = document.createElement("li");
 
       const left = document.createElement("div");
@@ -122,8 +124,8 @@ function renderTransactions() {
     });
   }
 
-  updateSummary();  
-  updateChart();    
+  updateSummary();
+  updateChart();
 }
 
 function updateSummary() {
@@ -131,13 +133,25 @@ function updateSummary() {
   const balance = income - expense;
 
   if (showUSD && usdRate) {
-    balanceDiv.innerHTML = `<strong>Balance:</strong> ${formatMoneyUSD(balance * usdRate)}`;
-    incomeDiv.innerHTML  = `<strong>Total Income:</strong> ${formatMoneyUSD(income * usdRate)}`;
-    expenseDiv.innerHTML = `<strong>Total Expense:</strong> ${formatMoneyUSD(expense * usdRate)}`;
+    balanceDiv.innerHTML = `<strong>Balance:</strong> ${formatMoneyUSD(
+      balance * usdRate
+    )}`;
+    incomeDiv.innerHTML = `<strong>Total Income:</strong> ${formatMoneyUSD(
+      income * usdRate
+    )}`;
+    expenseDiv.innerHTML = `<strong>Total Expense:</strong> ${formatMoneyUSD(
+      expense * usdRate
+    )}`;
   } else {
-    balanceDiv.innerHTML = `<strong>Balance:</strong> ₹${formatMoneyINR(balance)}`;
-    incomeDiv.innerHTML  = `<strong>Total Income:</strong> ₹${formatMoneyINR(income)}`;
-    expenseDiv.innerHTML = `<strong>Total Expense:</strong> ₹${formatMoneyINR(expense)}`;
+    balanceDiv.innerHTML = `<strong>Balance:</strong> ₹${formatMoneyINR(
+      balance
+    )}`;
+    incomeDiv.innerHTML = `<strong>Total Income:</strong> ₹${formatMoneyINR(
+      income
+    )}`;
+    expenseDiv.innerHTML = `<strong>Total Expense:</strong> ₹${formatMoneyINR(
+      expense
+    )}`;
   }
 }
 
@@ -156,10 +170,10 @@ function updateChart() {
   const { income, expense } = getTotals(transactions);
   const ctx = document.getElementById("expenseChart").getContext("2d");
 
-  // Optionally convert chart values when USD toggle 
-  const values = showUSD && usdRate
-    ? [income * usdRate, expense * usdRate]
-    : [income, expense];
+  const values =
+    showUSD && usdRate
+      ? [income * usdRate, expense * usdRate]
+      : [income, expense];
 
   if (chart) chart.destroy();
 
@@ -170,8 +184,8 @@ function updateChart() {
       datasets: [
         {
           data: values,
-        }
-      ]
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -184,14 +198,13 @@ function updateChart() {
               return showUSD && usdRate
                 ? ` ${formatMoneyUSD(v)}`
                 : ` ₹${formatMoneyINR(v)}`;
-            }
-          }
-        }
-      }
-    }
+            },
+          },
+        },
+      },
+    },
   });
 }
-
 
 function addTransaction() {
   const amount = parseFloat(amountInput.value);
@@ -209,7 +222,7 @@ function addTransaction() {
     type,
     amount,
     category,
-    date
+    date,
   };
 
   transactions.push(transaction);
@@ -219,7 +232,7 @@ function addTransaction() {
 }
 
 function deleteTransaction(id) {
-  transactions = transactions.filter(tx => tx.id !== id);
+  transactions = transactions.filter((tx) => tx.id !== id);
   saveTransactions();
   renderTransactions();
 }
@@ -230,7 +243,6 @@ function resetForm() {
   dateInput.value = "";
   typeInput.value = "income";
 }
-
 
 addBtn.addEventListener("click", addTransaction);
 filterType.addEventListener("change", renderTransactions);
@@ -244,7 +256,7 @@ toggleThemeBtn.addEventListener("click", () => {
 
 convertCurrencyBtn.addEventListener("click", async () => {
   if (!usdRate) await fetchUSDRate();
-  if (!usdRate) return; 
+  if (!usdRate) return;
   showUSD = !showUSD;
   convertCurrencyBtn.textContent = showUSD
     ? "₹ Show Balance in INR"
@@ -262,11 +274,41 @@ loadTransactions();
 
 if (transactions.length === 0) {
   transactions = [
-    { id: 1, type: "income",  amount: 5000, category: "Salary",    date: "2025-08-01" },
-    { id: 2, type: "income",  amount: 2000, category: "Freelance", date: "2025-08-05" },
-    { id: 3, type: "expense", amount: 1500, category: "Food",      date: "2025-08-10" },
-    { id: 4, type: "expense", amount: 800,  category: "Transport", date: "2025-08-12" },
-    { id: 5, type: "income",  amount: 1200, category: "Gift",      date: "2025-08-15" }
+    {
+      id: 1,
+      type: "income",
+      amount: 5000,
+      category: "Salary",
+      date: "2025-08-01",
+    },
+    {
+      id: 2,
+      type: "income",
+      amount: 2000,
+      category: "Freelance",
+      date: "2025-08-05",
+    },
+    {
+      id: 3,
+      type: "expense",
+      amount: 1500,
+      category: "Food",
+      date: "2025-08-10",
+    },
+    {
+      id: 4,
+      type: "expense",
+      amount: 800,
+      category: "Transport",
+      date: "2025-08-12",
+    },
+    {
+      id: 5,
+      type: "income",
+      amount: 1200,
+      category: "Gift",
+      date: "2025-08-15",
+    },
   ];
   saveTransactions();
 }
