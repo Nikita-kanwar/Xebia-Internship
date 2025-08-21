@@ -1,50 +1,52 @@
-let birthYear;
 
-while (true) {
-  birthYear = prompt(
-    "Enter your Birth Year (4 digits between 1900 and the current year): "
-  );
-  if (
-    birthYear &&
-    !isNaN(birthYear) &&
-    birthYear.length === 4 &&
-    birthYear >= 1900 &&
-    birthYear <= new Date().getFullYear()
-  ) {
-    break;
-  } else {
-    alert(
-      "Please enter a valid 4-digit year between 1900 and the current year."
-    );
-  }
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("checkBtn");
+  const output = document.getElementById("output");
 
-let birthMonth;
+  btn.addEventListener("click", () => {
+    
+    let birthYear = parseInt(document.getElementById("birthYear").value);
+    let birthMonth = parseInt(document.getElementById("birthMonth").value);
 
-while (true) {
-  birthMonth = prompt("Enter your Birth Month (1 to 12): ");
+    // Check Birth Year
+    if (
+      !(birthYear && !isNaN(birthYear) && birthYear >= 1900 && birthYear <= new Date().getFullYear())
+    ) {
+      output.textContent = "Please enter a valid 4-digit year between 1900 and the current year.";
+      output.style.color = "red";
+      return;
+    }
 
-  if (birthMonth >= 0 && birthMonth <= 12) {
-    break;
-  } else {
-    alert("Please enter a valid month between 1 and 12.");
-  }
-}
+    console.log(`Your Birth Year is : ${birthYear}`);
 
-let currDate = new Date();
+    // Check Birth Month
+    if (!(birthMonth >= 1 && birthMonth <= 12)) {
+      output.textContent = " Please enter a valid month between 1 and 12.";
+      output.style.color = "red";
+      return;
+    }
 
-let currYear = currDate.getFullYear();
-let currMonth = currDate.getMonth() + 1;
+    console.log(`Your Birth Month is : ${birthMonth}`);
 
-let AgeY = currYear - birthYear;
-let AgeM = currMonth - birthMonth;
+    // Calculate age
+    let currDate = new Date();
+    let currYear = currDate.getFullYear();
+    let currMonth = currDate.getMonth() + 1;
+    let ageYear = currYear - birthYear;
+    let ageMonth = currMonth - birthMonth;
 
-AgeY = Math.floor(AgeY + AgeM / 12);
+    ageYear = Math.floor(ageYear + ageMonth / 12);
 
-alert(`Your age is: ${AgeY} years.`);
+    console.log(`Your Age is : ${ageYear}`);
+    output.textContent = `Your Age is : ${ageYear} |`;
+    output.style.color = "green";
 
-if (AgeY >= 18) {
-  alert("You are eligible to vote");
-} else {
-  alert("Not eligible to vote");
-}
+    if (ageYear >= 18) {
+      console.log("You are eligible to vote");
+      output.textContent += " You are eligible to vote.";
+    } else {
+      console.log("Not eligible");
+      output.textContent += " You are not eligible to vote.";
+    }
+  });
+});
