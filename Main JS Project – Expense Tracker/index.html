@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expense Tracker</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Chart.js CDN -->
+  <!--  CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@
   <div class="container">
     <!-- Bonus Controls -->
     <div class="extra-features">
-      <button id="toggleTheme">🌙  Dark/Light</button>
+      <button id="toggleTheme">🌙 Dark/Light</button>
       <button id="convertCurrency">Show Balance in USD</button>
     </div>
 
@@ -53,8 +53,8 @@
       <div><strong>Total Expense:</strong> ₹0</div>
     </div>
 
-    <!-- Filters -->
-    <h3>Transactions</h3>
+    <!-- Filters-->
+     <h3>Transactions</h3>
     <div class="filters">
       <label for="filterType">Filter:</label>
       <select id="filterType">
@@ -65,16 +65,16 @@
 
       <label for="searchCategory">Search:</label>
       <input type="text" id="searchCategory" placeholder="Search by category..." />
-    </div>
+    </div>  
 
     <!-- Transactions List -->
     <ul id="transactionList">
-      <li>No transactions yet...</li>
+      <li>No transactions yet</li>
     </ul>
 
     <!-- Analytics -->
     <h3>Analytics</h3>
-    <canvas id="expenseChart" width="400" height="220"></canvas>
+    <canvas id="expenseChart" width="100" height="50"></canvas>
   </div>
 
   <script src="script.js"></script>

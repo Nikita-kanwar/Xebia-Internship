@@ -2,91 +2,110 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me Page</title>
-  <!-- Internal CSS -->
   <style>
-    body {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
     }
 
-    h1,
-    h2 {
-      font-family: sans-serif;
-      font-style: oblique;
+    body {
+      background: #f6f5f5;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .section {
+
       margin: 20px;
+      padding: 10px 20px;
+
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #000;
+    }
+
+    h3 {
+      font-size: 2rem;
+      color: #333;
     }
 
     p {
-      margin: 20px;
-      font-family: sans-serif;
+      color: #444;
     }
 
-    img {
-      margin: 20px;
-      border: 2px solid #fff;
-      border-radius: 20px;
-      transition: transfrom 0.3s ease;
-      cursor: pointer;
-    }
-
-    img:hover {
-      transform: scale(1.1);
-    }
-
-    ol {
-      font-family: sans-serif;
+    ul li {
       list-style: none;
     }
 
-    a {
+    img {
+      height: 350px;
+      width: 350px;
+
+      transition: 0.5s ease-in-out;
+
+    }
+
+    img:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      border: 2px solid #555;
+      border-radius: 40px;
+    }
+
+    .section p a {
       text-decoration: none;
-      color: #111;
+      color: #000;
     }
 
-    button {
-      padding: 10px;
-      font-size: 20px;
-      border-radius: 10px;
-    }
-
-    button:hover {
-      background-color: #666;
+    p>a:hover {
+      cursor: pointer;
+      color: #4879DD;
     }
   </style>
 </head>
 
 <body>
-  <!-- About Me -->
-  <section class="aboutMe">
+  <div class="container">
     <h1>Nikita Kanwar</h1>
-    <p>
-      Hello! I'm nikita kanwar, a recent graduate in BCA. I'm passionate about
-      frontend web development and love building beautiful, user-friendly
-      websites using HTML, CSS and Javascript. I'm currently sharpening my
-      skills and gaining hands-on experience through internship. Apart from
-      tech , I enjoy creative writing and often express myself through poetry
-      and blogs.
-    </p>
-    <h2>hobbies or interests</h2>
-    <ol>
-      <li>Web development</li>
-      <li>Creative Writing</li>
-      <li>Playing Badminton</li>
-    </ol>
+    <div class="section">
+      <h3>About Me</h3>
+      <p> Hello! I'm nikita kanwar, a recent graduate in BCA. I'm passionate about
+        frontend web development and love building beautiful, user-friendly
+        websites using HTML, CSS and Javascript. I'm currently sharpening my
+        skills and gaining hands-on experience through internship. Apart from
+        tech , I enjoy creative writing and often express myself through poetry
+        and blogs.</p>
+    </div>
+    <div class="section">
+      <h3>Contact Me</h3>
+      <p>Email: <a href="mailto:kanwarnikita2025@gmail.com">kanwarnikita2025@gmail.com</a></p>
+    </div>
+    <div class="section">
+      <h3>Hobbies or Interests</h3>
+      <ul>
 
-    <img
-      src="https://images.unsplash.com/photo-1749947393466-cb5e81bc943d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
-      alt="" height="300px" width="200px" />
-  </section>
-  <!-- Contact Me -->
-  <section class="contactMe">
-    <h1>Contact ME</h1>
-    <button><a href="mailto:nikita@gmail.com">Send Email</a></button>
-  </section>
+        <li>Web Development</li>
+        <li>Content Writing</li>
+        <li>Photography</li>
+      </ul>
+    </div>
+    <div class="section">
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/011/153/368/small_2x/3d-website-developer-working-on-laptop-illustration-png.png"
+        alt="">
+    </div>
+  </div>
+
 </body>
 
 </html>
