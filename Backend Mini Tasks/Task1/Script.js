@@ -1,4 +1,3 @@
-// script that logs system info (OS type, free memory, file path of current directory).
 const os = require('os');
 const path = require('path');
 
