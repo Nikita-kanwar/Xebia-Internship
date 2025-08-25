@@ -1,12 +1,14 @@
 const express = require("express");
-const usersRouter = require("./user");
-
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use("/users", usersRouter);
+app.get("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  res.json({ message: `You requested user with ID: ${userId}` });
+});
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

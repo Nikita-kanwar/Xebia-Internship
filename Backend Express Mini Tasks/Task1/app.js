@@ -2,19 +2,15 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
+app.get("/greet", (req, res) => {
+  res.send("Hello from Express!");
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Home Page");
+app.post("/submit", (req, res) => {
+  res.send("Data submitted successfully!");
 });
 
-app.post("/data", (req, res) => {
-  res.send("Data received via POST ");
-});
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
