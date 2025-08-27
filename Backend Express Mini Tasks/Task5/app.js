@@ -11,7 +11,7 @@ let todos = [];
 let nextId = 1;
 
 app.get("/", (req, res) => {
-  res.send(" Welcome to the TODO API ");
+  res.send("Welcome to the TODO API ");
 });
 
 app.post("/todos", (req, res) => {

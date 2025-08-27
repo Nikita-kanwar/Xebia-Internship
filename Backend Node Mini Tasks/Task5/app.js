@@ -21,7 +21,6 @@ async function ensureFiles() {
   }
 }
 
-
 async function readFiles() {
   try {
     await ensureFiles();
