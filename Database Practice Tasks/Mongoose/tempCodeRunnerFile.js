@@ -1,2 +1,4 @@
-me: { $in: ["Nikita", "Siya"] } });
-console.log("Users with name Nikita or Siya:", selectedUsers);
+
+// Delete one
+await User.deleteOne({ name: "Priyanka" });
+console.log("Deleted user Priyanka");
