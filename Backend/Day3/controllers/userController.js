@@ -1,7 +1,6 @@
 import User from "../models/userModel.js";
 
-// @desc   Create user
-// @route  POST /api/users
+
 export const createUser = async (req, res) => {
   const { name, email, age } = req.body;
   const user = new User({ name, email, age });
@@ -9,15 +8,13 @@ export const createUser = async (req, res) => {
   res.status(201).json(createdUser);
 };
 
-// @desc   Get all users
-// @route  GET /api/users
+
 export const getUsers = async (req, res) => {
   const users = await User.find({});
   res.json(users);
 };
 
-// @desc   Get user by ID
-// @route  GET /api/users/:id
+
 export const getUserById = async (req, res) => {
   const user = await User.findById(req.params.id);
   if (user) {
@@ -28,8 +25,6 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// @desc   Update user
-// @route  PUT /api/users/:id
 export const updateUser = async (req, res) => {
   const { name, email, age } = req.body;
   const user = await User.findById(req.params.id);
@@ -47,8 +42,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// @desc   Delete user
-// @route  DELETE /api/users/:id
+
 export const deleteUser = async (req, res) => {
   const user = await User.findById(req.params.id);
   if (user) {
