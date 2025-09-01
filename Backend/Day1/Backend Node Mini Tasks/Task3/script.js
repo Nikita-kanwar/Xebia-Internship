@@ -1,21 +1,21 @@
-const fs = require('fs');
-const EventEmitter = require('events');
+const EventEmitter = require("events");
+const fs = require("fs");
 
-class Logger extends EventEmitter {
-  log(message) {
-    fs.appendFile('log.txt', message + '\n', (err) => {
-      if (!err) {
-        this.emit('logged', message);
-      }
-    });
-  }
-}
+const emitter = new EventEmitter();
 
-const logger = new Logger();
-
-logger.on('logged', (msg) => {
-  console.log('New log entry:', msg);
+emitter.on("log", (message) => {
+  fs.appendFile("log.txt", message + "\n", (err) => {
+    if (err) {
+      console.error("Error writing to file:", err);
+    } else {
+      emitter.emit("logged", message); 
+    }
+  });
 });
 
-logger.log('First log entry');
-logger.log('Another log entry');
+emitter.on("logged", (msg) => {
+  console.log("Message written to file:", msg);
+});
+
+emitter.emit("log", "First loggedIn");
+emitter.emit("log", "Second loggedIn");

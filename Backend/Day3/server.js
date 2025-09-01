@@ -15,9 +15,7 @@ app.get("/ping", (req, res) => {
   res.send("API running");
 });
 
-
 app.use("/api/users", userRoutes);
-
 
 app.use(notFound);
 app.use(errorHandler);

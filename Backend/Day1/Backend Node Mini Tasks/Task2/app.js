@@ -1,7 +1,7 @@
 
 const math = require('./math');
 
-const {  add,subtract, multiply,divide} = math;
+const {add,subtract, multiply,divide} = math;
 
 console.log("Addition:", add(5, 3));
 console.log("Subtraction:", subtract(10, 4));

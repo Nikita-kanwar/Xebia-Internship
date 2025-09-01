@@ -1,20 +1,23 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const PORT = 3000;
 
-app.get("/", (req, res) => {
-  res.send("This is the homepage");
+app.use(express.json()); 
+
+let users = [
+  { id: 1, name: 'Nikita' },
+  { id: 2, name: 'Aman' }
+];
+
+app.get('/users', (req, res) => {
+  res.json(users);
 });
 
-app.get("/greet", (req, res) => {
-  res.send("Hello from Express!");
+app.post('/users', (req, res) => {
+  const newUser = { id: users.length + 1, name: req.body.name };
+  users.push(newUser);
+  res.status(201).json(newUser);
 });
 
-app.post("/submit", (req, res) => {
-  res.send("Data submitted successfully!");
-});
-
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log('API running on http://localhost:3000');
 });

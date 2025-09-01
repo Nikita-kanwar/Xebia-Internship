@@ -14,7 +14,6 @@ async function ensureFiles() {
     try {
       await fs.access(filePath); 
     } catch {
-   
       await fs.writeFile(filePath, file.content, 'utf-8');
       console.log(`Created ${file.name}`);
     }
@@ -24,7 +23,6 @@ async function ensureFiles() {
 async function readFiles() {
   try {
     await ensureFiles();
-
     for (const file of files) {
       const content = await fs.readFile(path.join(__dirname, file.name), 'utf-8');
       console.log(`${file.name}:\n`, content, '\n');
