@@ -3,17 +3,15 @@ import User from "../models/userModel.js";
 
 export const createUser = async (req, res) => {
   const { name, email, age } = req.body;
-  const user = new User({ name, email, age });
+  const user = new User({name, email, age});
   const createdUser = await user.save();
   res.status(201).json(createdUser);
 };
-
 
 export const getUsers = async (req, res) => {
   const users = await User.find({});
   res.json(users);
 };
-
 
 export const getUserById = async (req, res) => {
   const user = await User.findById(req.params.id);
@@ -41,7 +39,6 @@ export const updateUser = async (req, res) => {
     throw new Error("User not found");
   }
 };
-
 
 export const deleteUser = async (req, res) => {
   const user = await User.findById(req.params.id);
