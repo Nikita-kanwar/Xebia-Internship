@@ -1,12 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { connectMongoDb } = require('./config/db');
-const authRoutes = require("./routes/auth"); 
+const authRoutes = require("./routes/auth");
+const productRoutes = require('./routes/productRoutes');
+
 
 dotenv.config();
 
 // connection
-connectMongoDb(); 
+connectMongoDb();
 
 const app = express();
 
@@ -14,7 +16,11 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', authRoutes);  
+// authroute
+app.use('/api/auth', authRoutes);
+// product route
+app.use('/api/products', productRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('Server is running');
