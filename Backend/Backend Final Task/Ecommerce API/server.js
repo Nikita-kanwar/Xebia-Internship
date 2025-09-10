@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const { connectMongoDb } = require('./config/db');
 const authRoutes = require("./routes/auth");
 const productRoutes = require('./routes/productRoutes');
-
+const cartRoutes = require("./routes/cartRoutes");
 
 dotenv.config();
 
@@ -16,11 +16,12 @@ const app = express();
 app.use(express.json());
 
 // Routes
-// authroute
+// auth route
 app.use('/api/auth', authRoutes);
 // product route
 app.use('/api/products', productRoutes);
-
+// Cart route
+app.use("/api/cart", cartRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is running');
