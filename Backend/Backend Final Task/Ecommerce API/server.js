@@ -4,6 +4,7 @@ const { connectMongoDb } = require('./config/db');
 const authRoutes = require("./routes/auth");
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 // Cart route
 app.use("/api/cart", cartRoutes);
+// Order routeconst 
+app.use("/api/orders", orderRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is running');
