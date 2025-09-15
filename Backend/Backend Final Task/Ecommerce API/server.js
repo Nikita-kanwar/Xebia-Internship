@@ -3,32 +3,34 @@ const dotenv = require('dotenv');
 const { connectMongoDb } = require('./config/db');
 const authRoutes = require("./routes/auth");
 const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require("./routes/cartRoutes");
-const orderRoutes = require("./routes/orderRoutes");
+const cartRoutes = require('./routes/cartRoutes'); 
+const orderRoutes = require('./routes/orderRoutes'); 
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+const { errorHandler } = require('./middlewares/errorMiddleware');
 
 dotenv.config();
 
-// connection
 connectMongoDb();
 
 const app = express();
 
-// Middleware
 app.use(express.json());
+app.use(helmet()); 
+app.use(cors());   
+app.use(morgan('dev')); 
 
-// Routes
-// auth route
 app.use('/api/auth', authRoutes);
-// product route
 app.use('/api/products', productRoutes);
-// Cart route
-app.use("/api/cart", cartRoutes);
-// Order routeconst 
-app.use("/api/orders", orderRoutes);
+app.use('/api/cart', cartRoutes); 
+app.use('/api/orders', orderRoutes); 
 
 app.get('/', (req, res) => {
-  res.send('Server is running');
+  res.send('Server is running securely');
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

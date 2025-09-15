@@ -14,10 +14,47 @@ exports.createProduct = async (req, res) => {
     }
 };
 
-exports.getProducts = async (_req, res) => {
+exports.getProducts = async (req, res) => {
     try {
-        const products = await Product.find().sort({ createdAt: -1 });
-        res.json(products);
+        let { search, category, sort, page, limit } = req.query;
+
+        page = parseInt(page) || 1;
+        limit = parseInt(limit) || 10;
+        const skip = (page - 1) * limit;
+
+        let filter = {};
+        if (search) {
+            filter.name = { $regex: search, $options: "i" }; 
+        }
+        if (category) {
+            filter.category = { $regex: category, $options: "i" };
+        }
+
+        let sortOption = {};
+        if (sort) {
+            const sortFields = sort.split(','); 
+            sortFields.forEach(field => {
+                const order = field.startsWith('-') ? -1 : 1;
+                const key = field.replace('-', '');
+                sortOption[key] = order;
+            });
+        } else {
+            sortOption = { createdAt: -1 }; 
+        }
+
+        const products = await Product.find(filter)
+            .sort(sortOption)
+            .skip(skip)
+            .limit(limit);
+
+        const total = await Product.countDocuments(filter);
+
+        res.json({
+            total,
+            page,
+            pages: Math.ceil(total / limit),
+            products
+        });
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
