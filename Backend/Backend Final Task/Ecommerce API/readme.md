@@ -16,16 +16,16 @@ npm install
 Create a .env file in the root directory:
 
 env
-PORT=5000
+PORT=3000
 MONGO_URI=mongodb://localhost:27017/ecommerce
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRE=1d
 Start the server
 
 
-npm run dev   # Development mode
-npm start     # Production mode
-Server runs at: http://localhost:5000
+npm run dev   
+npm start    
+Server runs at: http://localhost:3000
 
  Testing
 Use Postman to test the APIs.
