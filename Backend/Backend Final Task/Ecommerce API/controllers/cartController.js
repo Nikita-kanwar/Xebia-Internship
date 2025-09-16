@@ -96,8 +96,8 @@ exports.removeCartItem = async (req, res) => {
       "name price"
     );
 
-    res.json({ message: "Item removed from cart", cart: updatedCart });
+    res.json({ message: "item removed from cart", cart: updatedCart });
   } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "server error", error: err.message });
   }
 };

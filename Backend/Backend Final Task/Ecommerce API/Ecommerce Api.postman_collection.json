@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "97139a70-538d-4870-9e83-852629b7dfca",
+		"name": "Ecommerce Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46422321",
+		"_collection_link": "https://nikita-kanwar-3769.postman.co/workspace/Nikita-Kanwar~d4b3731f-17e1-47db-872e-191b56a22a19/collection/46422321-97139a70-538d-4870-9e83-852629b7dfca?action=share&source=collection_link&creator=46422321"
+	},
+	"item": [
+		{
+			"name": "create users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{   \r\n    \"email\":\"kanwarnikita2025@gmail.com\",\r\n    \"password\":\"Nikki#2005\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNTg4NmNhMTcyNjMwYzM3NWYxNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1Nzk5NjY2NCwiZXhwIjoxNzU4MDAwMjY0fQ.AJcaGyjtznE6HTWVKUs6JrzVueXkaRyOOhT7-rwSDxg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Phones\",\r\n  \"description\": \"Samsung mobile phones\",\r\n  \"price\": 10000,\r\n  \"stock\": 10,\r\n  \"category\": \"Personal\",\r\n  \"imageURL\": \"http://example.com/image.jpg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/products",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/products",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProduct by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/products/68c8e7996ca172630c375f2c",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"68c8e7996ca172630c375f2c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNTg4NmNhMTcyNjMwYzM3NWYxNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1Nzk5NjY2NCwiZXhwIjoxNzU4MDAwMjY0fQ.AJcaGyjtznE6HTWVKUs6JrzVueXkaRyOOhT7-rwSDxg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Laptop\",\r\n  \"description\": \"Lenovo best laptops.\",\r\n  \"price\": 50000,\r\n  \"stock\": 50,\r\n  \"category\": \"Personal\",\r\n  \"imageURL\": \"http://example.com/image.jpg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/products/68c8e74b6ca172630c375f28",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"68c8e74b6ca172630c375f28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzdkZjdlMWMyMjYxNTgwODZjMGE5MCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NzkyOTUxMCwiZXhwIjoxNzU3OTMzMTEwfQ.LfyK8cmni-bqXv8Y3k7T2X09_boaU6Wh3KflTy1FC94",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/products/68c7e1461c226158086c0a99",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"68c7e1461c226158086c0a99"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product to cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNjExNmNhMTcyNjMwYzM3NWYyMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3OTk2Nzc5LCJleHAiOjE3NTgwMDAzNzl9.hBcnV8jGRMuBMSF-q3bT5HHwBUyI5vfb0kgW84vN8-s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productId\": \"68c8e7736ca172630c375f2a\",\r\n  \"quantity\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/cart",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzdkZmMyMWMyMjYxNTgwODZjMGE5MyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3OTI5NDYzLCJleHAiOjE3NTc5MzMwNjN9.SO2HLa1tZtDl1U10mxvsvut3DKv7v76wDgsxM8ueGM0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/cart",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update quantity cart products",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzdkZmMyMWMyMjYxNTgwODZjMGE5MyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3OTI5NDYzLCJleHAiOjE3NTc5MzMwNjN9.SO2HLa1tZtDl1U10mxvsvut3DKv7v76wDgsxM8ueGM0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"quantity\": 255\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/cart/68c7e7983eac50fd25a8006b",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"68c7e7983eac50fd25a8006b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove product from cart",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzdkZmMyMWMyMjYxNTgwODZjMGE5MyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3OTI5NDYzLCJleHAiOjE3NTc5MzMwNjN9.SO2HLa1tZtDl1U10mxvsvut3DKv7v76wDgsxM8ueGM0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/cart/68c7e7983eac50fd25a8006b",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"cart",
+						"68c7e7983eac50fd25a8006b"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNjExNmNhMTcyNjMwYzM3NWYyMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU4MDAwNzMyLCJleHAiOjE3NTgwMDQzMzJ9.fEJmIbTi61FoeDMTprmWV45FyhUVmsFgjmvNXO6-IvA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/orders",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNjExNmNhMTcyNjMwYzM3NWYyMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU4MDAwNzMyLCJleHAiOjE3NTgwMDQzMzJ9.fEJmIbTi61FoeDMTprmWV45FyhUVmsFgjmvNXO6-IvA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/orders",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzhlNTg4NmNhMTcyNjMwYzM3NWYxNSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1ODAwMDg1MSwiZXhwIjoxNzU4MDA0NDUxfQ.-BXb2mlbErRa667VEUPRlqceVTi_JJ3jGS0ugWeQOwo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/orders/all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"orders",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

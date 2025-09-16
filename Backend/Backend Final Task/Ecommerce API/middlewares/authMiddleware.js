@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
     const parts = authHeader.split(' ');
 
     if (parts.length !== 2 || parts[0] !== 'Bearer') {
-        return res.status(401).json({ message: 'No/invalid Authorization header' });
+        return res.status(401).json({ message: 'invalid Authorization header' });
     }
 
     const token = parts[1];
