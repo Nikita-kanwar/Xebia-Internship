@@ -27,7 +27,7 @@ npm run dev
 npm start    
 Server runs at: http://localhost:3000
 
- Testing
+Testing
 Use Postman to test the APIs.
 For protected routes, add the header:
 
