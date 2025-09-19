@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const {connectMongoDb}= require('./config/db');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 const errorHandler = require('./middlewares/errorHandler');
 
 dotenv.config();
@@ -13,6 +14,7 @@ const app = express();
 connectMongoDb();
 
 app.use(helmet());
+
 app.use(
   cors({
     origin: process.env.CLIENT_URL || '*',
@@ -21,6 +23,8 @@ app.use(
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
 
 app.get('/', (req, res) => res.send('API is running'));
 
