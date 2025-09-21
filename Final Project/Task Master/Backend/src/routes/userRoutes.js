@@ -1,13 +1,14 @@
-import express from "express";
-import { authMiddleware } from "../middleware/authMiddleware.js";
-import { roleMiddleware } from "../middleware/roleMiddleware.js";
-import { getUsers, getUser, updateUser, deleteUser } from "../controllers/userController.js";
-
+const express = require("express");
+const { getUsers, getUser, updateUser, deleteUser } = require("../controllers/userController");
+const { authMiddleware, adminMiddleware } = require("../middleware/authMiddleware");
 const router = express.Router();
 
-router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
-router.get("/:id", authMiddleware, getUser);
-router.put("/:id", authMiddleware, updateUser);
-router.delete("/:id", authMiddleware, roleMiddleware(["admin"]), deleteUser);
+router.use(authMiddleware);
+router.use(adminMiddleware);
 
-export default router;
+router.get("/", getUsers);
+router.get("/:id", getUser);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
+
+module.exports = router;
