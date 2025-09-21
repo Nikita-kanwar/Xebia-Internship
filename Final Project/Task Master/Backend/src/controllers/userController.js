@@ -1,49 +1,57 @@
-const User = require('../models/User');
+import User from "../models/User.js";
 
-exports.getUsers = async (req, res, next) => {
+
+export const getUsers = async (req, res, next) => {
   try {
-    const users = await User.find().select('-password');
+    const users = await User.find().select("-password");
     res.json(users);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
-exports.getUserById = async (req, res, next) => {
+
+export const getUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).select('-password');
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    if (req.user.role !== 'admin' && req.user.id !== user.id.toString()) {
-      return res.status(403).json({ message: 'Cannot view this user' });
-    }
+    const user = await User.findById(req.params.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found" });
     res.json(user);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
-exports.updateUser = async (req, res, next) => {
+
+export const updateUser = async (req, res, next) => {
   try {
     const { name, email, role } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { name, email, role },
-      { new: true, runValidators: true }
-    ).select('-password');
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user);
-  } catch (err) {
-    next(err);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (req.user.role !== "admin" && req.user._id !== user._id.toString()) {
+      return res.status(403).json({ message: "Access denied" });
+    }
+
+    user.name = name || user.name;
+    user.email = email || user.email;
+    if (role && req.user.role === "admin") user.role = role;
+
+    await user.save();
+    res.json({ message: "User updated successfully" });
+  } catch (error) {
+    next(error);
   }
 };
 
-exports.deleteUser = async (req, res, next) => {
+
+export const deleteUser = async (req, res, next) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json({ message: 'User deleted successfully' });
-  } catch (err) {
-    next(err);
+    if (req.user.role !== "admin") return res.status(403).json({ message: "Access denied" });
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    await user.remove();
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    next(error);
   }
 };

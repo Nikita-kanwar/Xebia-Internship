@@ -1,32 +1,25 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const helmet = require('helmet');
-const cors = require('cors');
-const {connectMongoDb}= require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const errorHandler = require('./middlewares/errorHandler');
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import helmet from "helmet";
+import { connectDB } from "./config/db.js";
+import { errorHandler } from "./middleware/errorMiddleware.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
+connectDB();
 
 const app = express();
 
-connectMongoDb();
-
-app.use(helmet());
-
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || '*',
-  })
-);
 app.use(express.json());
+app.use(helmet());
+app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" }));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
 
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
-app.get('/', (req, res) => res.send('API is running'));
 
 app.use(errorHandler);
 

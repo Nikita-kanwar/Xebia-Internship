@@ -1,52 +1,37 @@
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+import { useNavigate, Link } from "react-router-dom";
 
-import { useState } from 'react';
-import API from '../services/api';
-import { useNavigate } from 'react-router-dom';
-
-export default function Login() {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleChange = (e) => setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErr('');
-    setLoading(true);
+    setError("");
     try {
-      const res = await API.post('/auth/login', form);
-      localStorage.setItem('token', res.data.token);
-      navigate('/dashboard');
-    } catch (error) {
-      setErr(error.response?.data?.message || (error.response?.data?.errors?.[0]?.msg) || 'Login failed');
-      setLoading(false);
+      await login(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-64px)] bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md space-y-4">
-        <h2 className="text-2xl font-bold text-center text-indigo-600">Login</h2>
-
-        {err && <div className="text-sm text-red-600">{err}</div>}
-
-        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange}
-               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-
-        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange}
-               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-
-        <button type="submit" disabled={loading}
-                className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition disabled:opacity-60">
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-
-        <p className="text-center text-sm text-gray-600">
-          Don’t have an account? <a className="text-indigo-600 hover:underline" href="/signup">Signup</a>
-        </p>
+    <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
+      <h2 className="text-2xl mb-4">Login</h2>
+      {error && <div className="text-red-500 mb-2">{error}</div>}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input type="email" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} className="w-full p-2 border rounded" required />
+        <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full p-2 border rounded" required />
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
       </form>
+      <p className="mt-4">Don't have an account? <Link to="/signup" className="text-blue-600 underline">Signup</Link></p>
     </div>
   );
-}
+};
+
+export default Login;

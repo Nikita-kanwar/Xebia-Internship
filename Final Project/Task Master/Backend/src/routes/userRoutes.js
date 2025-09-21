@@ -1,18 +1,13 @@
-const express = require('express');
-const { getUsers, getUserById, updateUser, deleteUser } = require('../controllers/userController');
-const authMiddleware = require('../middlewares/authMiddleware');
-const roleMiddleware = require('../middlewares/roleMiddleware');
+import express from "express";
+import { authMiddleware } from "../middleware/authMiddleware.js";
+import { roleMiddleware } from "../middleware/roleMiddleware.js";
+import { getUsers, getUser, updateUser, deleteUser } from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.use(authMiddleware);
+router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
+router.get("/:id", authMiddleware, getUser);
+router.put("/:id", authMiddleware, updateUser);
+router.delete("/:id", authMiddleware, roleMiddleware(["admin"]), deleteUser);
 
-router.get('/', roleMiddleware('admin'), getUsers);
-
-router.get('/:id', getUserById);
-
-router.put('/:id', roleMiddleware('admin'), updateUser);
-
-router.delete('/:id', roleMiddleware('admin'), deleteUser);
-
-module.exports = router;
+export default router;

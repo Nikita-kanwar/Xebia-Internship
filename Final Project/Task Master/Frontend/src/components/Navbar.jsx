@@ -1,33 +1,35 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
 
-export default function Navbar() {
+const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+    logout();
+    navigate("/login");
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="text-lg font-semibold text-indigo-600">TaskMaster</div>
-
-        <div className="space-x-4">
-          {!token ? (
-            <>
-              <Link to="/login" className="text-sm text-gray-700 hover:text-indigo-600">Login</Link>
-              <Link to="/signup" className="text-sm text-gray-700 hover:text-indigo-600">Signup</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/dashboard" className="text-sm text-gray-700 hover:text-indigo-600">Dashboard</Link>
-              <button onClick={handleLogout} className="ml-2 text-sm text-red-600 hover:underline">Logout</button>
-            </>
-          )}
-        </div>
+    <nav className="bg-blue-600 text-white p-4 flex justify-between">
+      <div className="font-bold text-lg">TaskMaster</div>
+      <div className="space-x-4">
+        {!user ? (
+          <>
+            <Link to="/login" className="hover:underline">Login</Link>
+            <Link to="/signup" className="hover:underline">Signup</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+            {user.role === "admin" && <Link to="/admin" className="hover:underline">Admin</Link>}
+            <button onClick={handleLogout} className="bg-red-500 px-2 py-1 rounded">Logout</button>
+          </>
+        )}
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;

@@ -1,56 +1,39 @@
-import { useState } from 'react';
-import API from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Signup() {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState('');
+const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signup } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErr('');
-    setLoading(true);
+    setError("");
     try {
-      const res = await API.post('/auth/signup', { ...form, role: 'user' });
-      localStorage.setItem('token', res.data.token);
-      navigate('/dashboard');
-    } catch (error) {
-      setErr(error.response?.data?.message || (error.response?.data?.errors?.[0]?.msg) || 'Signup failed');
-      setLoading(false);
+      await signup(name, email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Signup failed");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-64px)] bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md space-y-4">
-        <h2 className="text-2xl font-bold text-center text-indigo-600">Create account</h2>
-
-        {err && <div className="text-sm text-red-600">{err}</div>}
-
-        <input name="name" placeholder="Full name" value={form.name} onChange={handleChange}
-               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-
-        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange}
-               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-
-        <input name="password" type="password" placeholder="Password (min 6 chars)" value={form.password} onChange={handleChange}
-               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-
-        <button type="submit" disabled={loading}
-                className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition disabled:opacity-60">
-          {loading ? 'Signing up...' : 'Signup'}
-        </button>
-
-        <p className="text-center text-sm text-gray-600">
-          Already have an account? <a className="text-indigo-600 hover:underline" href="/login">Login</a>
-        </p>
+    <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
+      <h2 className="text-2xl mb-4">Signup</h2>
+      {error && <div className="text-red-500 mb-2">{error}</div>}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input type="text" placeholder="Name" value={name} onChange={e=>setName(e.target.value)} className="w-full p-2 border rounded" required />
+        <input type="email" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} className="w-full p-2 border rounded" required />
+        <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full p-2 border rounded" required />
+        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Signup</button>
       </form>
+      <p className="mt-4">Already have an account? <Link to="/login" className="text-blue-600 underline">Login</Link></p>
     </div>
   );
-}
+};
+
+export default Signup;
