@@ -3,8 +3,8 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const cors = require('cors');
 const {connectMongoDb}= require('./config/db');
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 dotenv.config();
