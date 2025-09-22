@@ -1,17 +1,24 @@
 const express = require("express");
-const { createTask, getTasks, getTask, updateTask, deleteTask } = require("../controllers/taskController");
-const { authMiddleware } = require("../middleware/authMiddleware");
-const multer = require("multer");
+const {
+  createTask,
+  getTasks,
+  getTask,
+  updateTask,
+  deleteTask,
+} = require("../controllers/taskController");
+
+const authMiddleware = require("../middleware/authMiddleware");
+
 const router = express.Router();
+const commentRoutes = require("./commentRoutes");
 
-const upload = multer({ dest: "uploads/" });
 
-router.use(authMiddleware);
+router.post("/", authMiddleware, createTask);
+router.get("/", authMiddleware, getTasks);
+router.get("/:id", authMiddleware, getTask);
+router.put("/:id", authMiddleware, updateTask);
+router.delete("/:id", authMiddleware, deleteTask);
+router.use("/:taskId/comments", commentRoutes);
 
-router.post("/", upload.array("attachments"), createTask);
-router.get("/", getTasks);
-router.get("/:id", getTask);
-router.put("/:id", upload.array("attachments"), updateTask);
-router.delete("/:id", deleteTask);
 
 module.exports = router;

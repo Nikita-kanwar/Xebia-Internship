@@ -1,10 +1,17 @@
-const Dashboard = () => {
-  return (
-    <div>
-      <h2 className="text-2xl font-bold">User Dashboard</h2>
-      <p>Welcome! Tasks will be displayed here in Day 3.</p>
-    </div>
-  );
-};
+import { Outlet } from "react-router-dom";
+import Layout from "../components/Layout";
+import Sidebar from "../components/Sidebar";
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <Layout>
+      <div className="flex min-h-screen">
+        <Sidebar />
+
+        <div className="flex-1 bg-gray-50 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+          <Outlet />
+        </div>
+      </div>
+    </Layout>
+  );
+}

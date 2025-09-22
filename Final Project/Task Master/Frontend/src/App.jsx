@@ -1,30 +1,48 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import AdminDashboard from "./pages/AdminDashboard.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
+
+// Pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import TaskList from "./pages/TaskList";
+import CreateTask from "./pages/CreateTask";
+import TaskDetail from "./pages/TaskDetail";
+
+function PrivateRoute({ children }) {
+  const { isAuthenticated, loading } = useContext(AuthContext);
+  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  return isAuthenticated ? children : <Navigate to="/login" />;
+}
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <div className="container mx-auto p-4">
+    <AuthProvider>
+      <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
           <Route
             path="/dashboard"
-            element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
-          />
-          <Route
-            path="/admin"
-            element={<ProtectedRoute adminOnly={true}><AdminDashboard /></ProtectedRoute>}
-          />
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<TaskList />} />
+            <Route path="tasks/new" element={<CreateTask />} />
+            <Route path="tasks/:id" element={<TaskDetail />} />
+          </Route>
+
+          <Route path="*" element={<h1 className="text-center mt-10">404 Not Found</h1>} />
         </Routes>
-      </div>
-    </Router>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

@@ -1,34 +1,60 @@
 const Comment = require("../models/Comment");
-const Task = require("../models/Task");
 
-// Add comment
-exports.addComment = async (req, res) => {
-  const task = await Task.findById(req.params.taskId);
-  if (!task) return res.status(404).json({ message: "Task not found" });
-
-  const comment = await Comment.create({
-    task: task._id,
-    user: req.user._id,
-    content: req.body.content,
-  });
-
-  res.status(201).json(comment);
+exports.createComment = async (req, res) => {
+  try {
+    const comment = await Comment.create({
+      text: req.body.text,
+      task: req.params.taskId,
+      user: req.user.id,
+    });
+    res.status(201).json(comment);
+  } catch (err) {
+    res.status(500).json({ msg: "Server error", error: err.message });
+  }
 };
 
-// Get comments
 exports.getComments = async (req, res) => {
-  const comments = await Comment.find({ task: req.params.taskId }).populate("user", "name");
-  res.json(comments);
+  try {
+    const comments = await Comment.find({ task: req.params.taskId })
+      .populate("user", "name email")
+      .sort({ createdAt: -1 });
+    res.json(comments);
+  } catch (err) {
+    res.status(500).json({ msg: "Server error", error: err.message });
+  }
 };
 
-// Delete comment
+
+exports.updateComment = async (req, res) => {
+  try {
+    let comment = await Comment.findById(req.params.commentId);
+    if (!comment) return res.status(404).json({ msg: "Comment not found" });
+
+    if (comment.user.toString() !== req.user.id && req.user.role !== "admin") {
+      return res.status(403).json({ msg: "Not authorized" });
+    }
+
+    comment.text = req.body.text || comment.text;
+    await comment.save();
+
+    res.json(comment);
+  } catch (err) {
+    res.status(500).json({ msg: "Server error", error: err.message });
+  }
+};
+
 exports.deleteComment = async (req, res) => {
-  const comment = await Comment.findById(req.params.commentId);
-  if (!comment) return res.status(404).json({ message: "Comment not found" });
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+    if (!comment) return res.status(404).json({ msg: "Comment not found" });
 
-  if (comment.user.toString() !== req.user._id.toString() && req.user.role !== "admin")
-    return res.status(403).json({ message: "Not authorized" });
+    if (comment.user.toString() !== req.user.id && req.user.role !== "admin") {
+      return res.status(403).json({ msg: "Not authorized" });
+    }
 
-  await comment.deleteOne();
-  res.json({ message: "Comment deleted" });
+    await comment.deleteOne();
+    res.json({ msg: "Comment deleted" });
+  } catch (err) {
+    res.status(500).json({ msg: "Server error", error: err.message });
+  }
 };

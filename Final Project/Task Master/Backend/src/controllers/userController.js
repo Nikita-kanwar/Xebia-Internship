@@ -1,36 +1,33 @@
 const User = require("../models/User");
 
-
 exports.getUsers = async (req, res) => {
   const users = await User.find().select("-password");
   res.json(users);
 };
 
-
 exports.getUser = async (req, res) => {
+  if (req.user.role !== "admin" && req.user.id !== req.params.id) {
+    return res.status(403).json({ msg: "Access denied" });
+  }
   const user = await User.findById(req.params.id).select("-password");
-  if (!user) return res.status(404).json({ message: "User not found" });
+  if (!user) return res.status(404).json({ msg: "User not found" });
   res.json(user);
 };
 
-
 exports.updateUser = async (req, res) => {
   const { name, email, role } = req.body;
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: "User not found" });
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.id,
+    { name, email, role },
+    { new: true }
+  ).select("-password");
 
-  if (req.user.role !== "admin" && req.user._id.toString() !== req.params.id)
-    return res.status(403).json({ message: "Not authorized" });
-
-  Object.assign(user, { name, email, role });
-  await user.save();
-  res.json({ message: "User updated", user });
+  if (!updatedUser) return res.status(404).json({ msg: "User not found" });
+  res.json(updatedUser);
 };
 
-// Delete user
 exports.deleteUser = async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  await user.deleteOne();
-  res.json({ message: "User deleted" });
+  const deletedUser = await User.findByIdAndDelete(req.params.id);
+  if (!deletedUser) return res.status(404).json({ msg: "User not found" });
+  res.json({ msg: "User deleted successfully" });
 };
