@@ -27,8 +27,8 @@ export default function CreateTask() {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-blue-600">Create New Task</h2>
-      {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+      <h2 className="text-2xl font-bold mb-6 text-purple-600">Create New Task</h2>
+      {error && <p className="text-purple-800 text-sm mb-2">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -36,7 +36,7 @@ export default function CreateTask() {
           placeholder="Title"
           value={form.title}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
           required
         />
         <textarea
@@ -44,7 +44,7 @@ export default function CreateTask() {
           placeholder="Description"
           value={form.description}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
         />
         <div className="flex gap-4">
           <select
@@ -77,7 +77,7 @@ export default function CreateTask() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition transform hover:scale-105"
+          className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition transform hover:scale-105"
         >
           Create Task
         </button>

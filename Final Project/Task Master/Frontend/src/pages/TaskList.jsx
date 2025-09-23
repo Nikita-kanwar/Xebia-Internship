@@ -70,15 +70,15 @@ export default function TaskList() {
               transition={{ duration: 0.4 }}
               className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition"
             >
-              <h3 className="font-bold text-lg text-blue-600">{task.title}</h3>
+              <h3 className="font-bold text-lg text-purple-600">{task.title}</h3>
               <p className="text-sm text-gray-600">
                 {task.description || "No description"}
               </p>
               <div className="flex justify-between mt-3 text-sm">
-                <span className="px-2 py-1 bg-blue-100 text-blue-600 rounded-lg">
+                <span className="px-2 py-1 bg-purple-200 text-gray-800 rounded-lg">
                   {task.priority}
                 </span>
-                <span className="px-2 py-1 bg-green-100 text-green-600 rounded-lg">
+                <span className="px-2 py-1 bg-green-200 text-gray-800 rounded-lg">
                   {task.status}
                 </span>
               </div>
@@ -87,19 +87,6 @@ export default function TaskList() {
         ))}
       </div>
 
-      <div className="flex justify-center mt-6 space-x-2">
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i + 1)}
-            className={`px-3 py-1 rounded ${
-              page === i + 1 ? "bg-blue-600 text-white" : "bg-gray-200"
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }

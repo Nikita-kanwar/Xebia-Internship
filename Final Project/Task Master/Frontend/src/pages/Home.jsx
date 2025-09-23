@@ -53,11 +53,11 @@ export default function Home() {
         <div className="flex justify-center gap-4">
           <Link
             to="/signup"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:scale-105 transition"
+            className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:scale-105 transition"
           >
             Get Started
           </Link>
-          <Link to="/login" className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg">
+          <Link to="/login" className="px-6 py-3 border border-purple-600 text-purple-600 rounded-lg">
             Login
           </Link>
         </div>
@@ -81,13 +81,13 @@ export default function Home() {
             <div className="flex gap-2">
               <button
                 onClick={() => navigate("/dashboard/tasks/new")}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:scale-105 transition"
+                className="px-4 py-2 bg-purple-800 text-white rounded-lg hover:scale-105 transition"
               >
                 New Task
               </button>
               <button
                 onClick={() => navigate("/dashboard")}
-                className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg"
+                className="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg"
               >
                 View Tasks
               </button>

@@ -34,8 +34,8 @@ export default function Login() {
       <PageWrapper>
         <div className="flex justify-center items-center px-4 min-h-screen">
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-md">
-            <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">Login</h2>
-            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+            <h2 className="text-3xl font-bold mb-6 text-center text-purple-600">Login</h2>
+            {error && <p className="text-purple-800 text-sm mb-2">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="email"
@@ -43,7 +43,7 @@ export default function Login() {
                 placeholder="Email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
                 required
               />
               <input
@@ -52,19 +52,19 @@ export default function Login() {
                 placeholder="Password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
                 required
               />
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition transform hover:scale-105"
+                className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition transform hover:scale-105"
               >
                 Login
               </button>
             </form>
             <p className="text-sm text-center mt-4">
               Don’t have an account?{" "}
-              <Link to="/signup" className="text-blue-600 hover:underline">
+              <Link to="/signup" className="text-purple-600 hover:underline">
                 Sign up
               </Link>
             </p>
