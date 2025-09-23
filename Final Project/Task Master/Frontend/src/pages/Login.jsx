@@ -33,7 +33,7 @@ export default function Login() {
     <Layout>
       <PageWrapper>
         <div className="flex justify-center items-center px-4 min-h-screen">
-          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-md">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl mb-60 shadow-lg w-full max-w-md">
             <h2 className="text-3xl font-bold mb-6 text-center text-purple-600">Login</h2>
             {error && <p className="text-purple-800 text-sm mb-2">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
