@@ -186,8 +186,8 @@ export default function Layout({ children }) {
       <main className="flex-grow">{children}</main>
 
       <footer className="bg-gray-100 text-center py-4 text-gray-600 text-sm">
-        © {new Date().getFullYear()} TaskMasterBuilt with ❤️ By Nikita Kanwar
+        © {new Date().getFullYear()} TaskMaster Built with ❤️ By Nikita Kanwar
       </footer>
     </div>
   );
-}
+} 

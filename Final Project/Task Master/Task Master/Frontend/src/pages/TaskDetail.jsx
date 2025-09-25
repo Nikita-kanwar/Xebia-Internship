@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import { motion } from "framer-motion";
@@ -7,10 +7,12 @@ import { motion } from "framer-motion";
 export default function TaskDetail() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [task, setTask] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [editingComment, setEditingComment] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,16 +41,29 @@ export default function TaskDetail() {
     }
   };
 
-  const handleAddComment = async (e) => {
+  const handleAddOrUpdateComment = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) return;
+
     try {
-      await api.post(`/tasks/${id}/comments`, { text: newComment });
+      if (editingComment) {
+        await api.put(`/tasks/${id}/comments/${editingComment}`, {
+          text: newComment,
+        });
+        setEditingComment(null);
+      } else {
+        await api.post(`/tasks/${id}/comments`, { text: newComment });
+      }
       setNewComment("");
       fetchComments();
     } catch (err) {
-      console.error("Failed to add comment", err);
+      console.error("Failed to save comment", err);
     }
+  };
+
+  const handleEditComment = (comment) => {
+    setEditingComment(comment._id);
+    setNewComment(comment.text);
   };
 
   const handleDeleteComment = async (commentId) => {
@@ -60,6 +75,19 @@ export default function TaskDetail() {
       console.error("Failed to delete comment", err);
     }
   };
+
+  const handleDeleteTask = async () => {
+    if (!confirm("Delete this task?")) return;
+    try {
+      await api.delete(`/tasks/${id}`);
+      navigate("/dashboard");
+    } catch (err) {
+      alert("Failed to delete task");
+    }
+  };
+
+ 
+  const fileUrl = (filename) => `http://localhost:5000/uploads/${filename}`;
 
   return (
     <div>
@@ -75,7 +103,9 @@ export default function TaskDetail() {
           className="bg-white p-6 rounded-xl shadow-lg max-w-3xl mx-auto"
         >
           {/* Task Info */}
-          <h2 className="text-2xl font-bold text-purple-600 mb-2">{task.title}</h2>
+          <h2 className="text-2xl font-bold text-purple-600 mb-2">
+            {task.title}
+          </h2>
           <p className="text-gray-700 mb-4">{task.description}</p>
           <div className="flex flex-wrap gap-3 text-sm mb-6">
             <span className="px-2 py-1 bg-purple-100 text-purple-600 rounded-lg">
@@ -91,9 +121,48 @@ export default function TaskDetail() {
             )}
           </div>
 
-          {/* Comments */}
+          {task.attachments?.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-2">📎 Attachments</h3>
+              <ul className="space-y-2">
+                {task.attachments.map((file, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={fileUrl(file)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-600 hover:underline"
+                    >
+                      {file}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {(user?.id === task.user || user?.role === "admin") && (
+            <div className="flex gap-3 mb-6">
+              <button
+                onClick={() => navigate(`/dashboard/tasks/${id}/edit`)}
+                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              >
+                Edit Task
+              </button>
+              <button
+                onClick={handleDeleteTask}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Delete Task
+              </button>
+            </div>
+          )}
+
           <h3 className="text-xl font-semibold mb-4">💬 Comments</h3>
-          <form onSubmit={handleAddComment} className="flex gap-2 mb-6">
+          <form
+            onSubmit={handleAddOrUpdateComment}
+            className="flex gap-2 mb-6"
+          >
             <input
               type="text"
               placeholder="Write a comment..."
@@ -105,7 +174,7 @@ export default function TaskDetail() {
               type="submit"
               className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
             >
-              Post
+              {editingComment ? "Update" : "Post"}
             </button>
           </form>
 
@@ -129,12 +198,20 @@ export default function TaskDetail() {
                     </p>
                   </div>
                   {(user?.role === "admin" || user?.id === c.user?._id) && (
-                    <button
-                      onClick={() => handleDeleteComment(c._id)}
-                      className="text-purple-800 text-sm hover:underline"
-                    >
-                      Delete
-                    </button>
+                    <div className="space-x-2">
+                      <button
+                        onClick={() => handleEditComment(c)}
+                        className="text-blue-600 text-sm hover:underline"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteComment(c._id)}
+                        className="text-purple-800 text-sm hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   )}
                 </motion.div>
               ))

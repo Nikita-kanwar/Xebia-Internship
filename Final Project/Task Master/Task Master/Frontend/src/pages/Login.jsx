@@ -28,7 +28,6 @@ export default function Login() {
       setError(err.response?.data?.msg || "Login failed");
     }
   };
-
   return (
     <Layout>
       <PageWrapper>

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 import { motion } from "framer-motion";
+import { AuthContext } from "../context/AuthContext";
 
 export default function TaskList() {
+  const { user } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
@@ -24,6 +26,16 @@ export default function TaskList() {
       setTotalPages(res.data.pages);
     } catch (err) {
       console.error("Failed to fetch tasks", err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm("Delete this task?")) return;
+    try {
+      await api.delete(`/tasks/${id}`);
+      fetchTasks();
+    } catch (err) {
+      alert("Failed to delete task");
     }
   };
 
@@ -63,18 +75,27 @@ export default function TaskList() {
 
       <div className="grid gap-4">
         {tasks.map((task) => (
-          <Link key={task._id} to={`/dashboard/tasks/${task._id}`}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition"
-            >
-              <h3 className="font-bold text-lg text-purple-600">{task.title}</h3>
+          <motion.div
+            key={task._id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition"
+          >
+            <Link to={`/dashboard/tasks/${task._id}`}>
+              <h3 className="font-bold text-lg text-purple-600 flex items-center gap-2">
+                {task.title}
+                {task.attachments?.length > 0 && (
+                  <span title="Has attachments">📎</span>
+                )}
+              </h3>
               <p className="text-sm text-gray-600">
                 {task.description || "No description"}
               </p>
-              <div className="flex justify-between mt-3 text-sm">
+            </Link>
+
+            <div className="flex justify-between items-center mt-3 text-sm">
+              <div className="flex gap-2">
                 <span className="px-2 py-1 bg-purple-200 text-gray-800 rounded-lg">
                   {task.priority}
                 </span>
@@ -82,11 +103,47 @@ export default function TaskList() {
                   {task.status}
                 </span>
               </div>
-            </motion.div>
-          </Link>
+
+              {(user?.id === task.user || user?.role === "admin") && (
+                <div className="flex gap-3">
+                  <Link
+                    to={`/dashboard/tasks/${task._id}/edit`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(task._id)}
+                    className="text-red-600 hover:underline"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
         ))}
       </div>
 
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          disabled={page <= 1}
+          onClick={() => setPage((p) => p - 1)}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Prev
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button
+          disabled={page >= totalPages}
+          onClick={() => setPage((p) => p + 1)}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

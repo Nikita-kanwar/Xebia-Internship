@@ -7,7 +7,7 @@ const taskSchema = new mongoose.Schema(
     priority: { type: String, enum: ["low", "medium", "high"], default: "medium" },
     status: { type: String, enum: ["todo", "in-progress", "done"], default: "todo" },
     deadline: { type: Date },
-    attachments: [{ type: String }], 
+    attachments: [{ type: String }],
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   },
   { timestamps: true }

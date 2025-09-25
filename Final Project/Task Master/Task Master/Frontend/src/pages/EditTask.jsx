@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../utils/api";
 
-export default function CreateTask() {
+export default function EditTask() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -11,23 +14,43 @@ export default function CreateTask() {
     deadline: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  useEffect(() => {
+    fetchTask();
+  }, [id]);
+
+  const fetchTask = async () => {
+    try {
+      const res = await api.get(`/tasks/${id}`);
+      const { title, description, priority, status, deadline } = res.data;
+      setForm({
+        title,
+        description,
+        priority,
+        status,
+        deadline: deadline ? deadline.split("T")[0] : "",
+      });
+    } catch (err) {
+      setError("Failed to load task");
+    }
+  };
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/tasks", form);
-      navigate("/dashboard");
+      await api.put(`/tasks/${id}`, form);
+      navigate(`/dashboard/tasks/${id}`);
     } catch (err) {
-      setError(err.response?.data?.msg || "Failed to create task");
+      setError(err.response?.data?.msg || "Failed to update task");
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-purple-600">Create New Task</h2>
+      <h2 className="text-2xl font-bold mb-6 text-purple-600">Edit Task</h2>
       {error && <p className="text-purple-800 text-sm mb-2">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -79,7 +102,7 @@ export default function CreateTask() {
           type="submit"
           className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition transform hover:scale-105"
         >
-          Create Task
+          Update Task
         </button>
       </form>
     </div>
