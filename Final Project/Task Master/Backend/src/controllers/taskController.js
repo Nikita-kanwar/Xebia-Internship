@@ -29,7 +29,7 @@ exports.createTask = async (req, res, next) => {
 
 exports.getTasks = async (req, res, next) => {
   try {
-    const { search, status, priority, page = 1, limit = 5, sort = "-createdAt" } = req.query;
+    const { search, status, priority, page = 1, limit = 3, sort = "-createdAt" } = req.query;
 
     let query = req.user.role === "admin" ? {} : { user: req.user.id };
 

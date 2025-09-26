@@ -132,9 +132,11 @@ export default function Layout({ children }) {
                     }}
                     className="w-full text-left py-2 text-purple-800"
                   >
-                    Logout
+                     Logout
                   </button>
+                  
                 </>
+                
               )}
             </motion.div>
           )}

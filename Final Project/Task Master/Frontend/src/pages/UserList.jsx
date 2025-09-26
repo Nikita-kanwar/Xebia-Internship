@@ -23,10 +23,10 @@ export default function UserList() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm("Delete this user?")) return;
+    if (!window.confirm("Delete this user?")) return;
     try {
       await api.delete(`/users/${id}`);
-      setUsers(users.filter((u) => u._id !== id));
+      setUsers((prev) => prev.filter((u) => u._id !== id));
     } catch (err) {
       alert(err.response?.data?.msg || "Failed to delete user");
     }
@@ -38,35 +38,38 @@ export default function UserList() {
         User Management
       </h2>
       {error && <p className="text-red-600 mb-2">{error}</p>}
-      <table className="w-full border-collapse border border-gray-200">
-        <thead>
-          <tr className="bg-gray-50">
-            <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Email</th>
-            <th className="border px-4 py-2">Role</th>
-            <th className="border px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((u) => (
-            <tr key={u._id} className="hover:bg-gray-50">
-              <td className="border px-4 py-2">{u.name}</td>
-              <td className="border px-4 py-2">{u.email}</td>
-              <td className="border px-4 py-2">{u.role}</td>
-              <td className="border px-4 py-2 space-x-2">
-                {u.role !== "admin" && (
-                  <button
-                    onClick={() => handleDelete(u._id)}
-                    className="text-red-600 hover:underline"
-                  >
-                    Delete
-                  </button>
-                )}
-              </td>
+
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[600px] border-collapse border border-gray-200">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="border px-4 py-2 text-left">Name</th>
+              <th className="border px-4 py-2 text-left">Email</th>
+              <th className="border px-4 py-2 text-left">Role</th>
+              <th className="border px-4 py-2 text-left">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u._id} className="hover:bg-gray-50">
+                <td className="border px-4 py-2">{u.name}</td>
+                <td className="border px-4 py-2">{u.email}</td>
+                <td className="border px-4 py-2">{u.role}</td>
+                <td className="border px-4 py-2 space-x-2">
+                  {u.role !== "admin" && (
+                    <button
+                      onClick={() => handleDelete(u._id)}
+                      className="text-red-600 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
