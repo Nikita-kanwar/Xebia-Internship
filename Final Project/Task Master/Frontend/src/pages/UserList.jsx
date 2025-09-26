@@ -28,13 +28,15 @@ export default function UserList() {
       await api.delete(`/users/${id}`);
       setUsers(users.filter((u) => u._id !== id));
     } catch (err) {
-      alert("Failed to delete user");
+      alert(err.response?.data?.msg || "Failed to delete user");
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-purple-600">User Management</h2>
+      <h2 className="text-2xl font-bold mb-6 text-purple-600">
+        User Management
+      </h2>
       {error && <p className="text-red-600 mb-2">{error}</p>}
       <table className="w-full border-collapse border border-gray-200">
         <thead>
@@ -52,12 +54,14 @@ export default function UserList() {
               <td className="border px-4 py-2">{u.email}</td>
               <td className="border px-4 py-2">{u.role}</td>
               <td className="border px-4 py-2 space-x-2">
-                <button
-                  onClick={() => handleDelete(u._id)}
-                  className="text-red-600 hover:underline"
-                >
-                  Delete
-                </button>
+                {u.role !== "admin" && (
+                  <button
+                    onClick={() => handleDelete(u._id)}
+                    className="text-red-600 hover:underline"
+                  >
+                    Delete
+                  </button>
+                )}
               </td>
             </tr>
           ))}

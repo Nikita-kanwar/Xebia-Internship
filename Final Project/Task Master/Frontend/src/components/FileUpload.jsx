@@ -10,13 +10,7 @@ export default function FileUpload({ onFilesChange }) {
 
   return (
     <div className="border-2 border-dashed border-purple-400 rounded-lg p-4 text-center">
-      <input
-        type="file"
-        ref={fileInputRef}
-        multiple
-        onChange={handleFilesChange}
-        className="hidden"
-      />
+      <input type="file" ref={fileInputRef} multiple onChange={handleFilesChange} className="hidden" />
       <button
         type="button"
         onClick={() => fileInputRef.current.click()}

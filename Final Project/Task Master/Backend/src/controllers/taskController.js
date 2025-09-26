@@ -3,15 +3,24 @@ const Task = require("../models/Task");
 exports.createTask = async (req, res, next) => {
   try {
     const attachments = req.files ? req.files.map((f) => f.filename) : [];
+
+    let assignedUser = req.user.id;
+    if (req.user.role === "admin" && req.body.user) {
+      assignedUser = req.body.user;
+    }
+
+    const deadline = req.body.deadline ? new Date(req.body.deadline) : undefined;
+
     const task = await Task.create({
       title: req.body.title,
       description: req.body.description,
       priority: req.body.priority,
       status: req.body.status,
-      deadline: req.body.deadline,
-      user: req.user.id,
+      deadline,
+      user: assignedUser,
       attachments,
     });
+
     res.status(201).json(task);
   } catch (err) {
     next(err);
@@ -21,6 +30,7 @@ exports.createTask = async (req, res, next) => {
 exports.getTasks = async (req, res, next) => {
   try {
     const { search, status, priority, page = 1, limit = 5, sort = "-createdAt" } = req.query;
+
     let query = req.user.role === "admin" ? {} : { user: req.user.id };
 
     if (status) query.status = status;
@@ -28,6 +38,7 @@ exports.getTasks = async (req, res, next) => {
     if (search) query.title = { $regex: search, $options: "i" };
 
     const tasks = await Task.find(query)
+      .populate("user", "name email role")
       .sort(sort)
       .skip((page - 1) * limit)
       .limit(Number(limit));
@@ -41,12 +52,13 @@ exports.getTasks = async (req, res, next) => {
 
 exports.getTask = async (req, res, next) => {
   try {
-    const task = await Task.findById(req.params.id);
+    const task = await Task.findById(req.params.id).populate("user", "name email role");
     if (!task) return res.status(404).json({ msg: "Task not found" });
 
-    if (task.user.toString() !== req.user.id && req.user.role !== "admin") {
+    if (task.user._id.toString() !== req.user.id && req.user.role !== "admin") {
       return res.status(403).json({ msg: "Access denied" });
     }
+
     res.json(task);
   } catch (err) {
     next(err);
@@ -66,11 +78,27 @@ exports.updateTask = async (req, res, next) => {
       ? req.files.map((f) => f.filename)
       : task.attachments;
 
+    let updatedUser = task.user;
+    if (req.user.role === "admin" && req.body.user) {
+      updatedUser = req.body.user;
+    }
+
+    const deadline = req.body.deadline ? new Date(req.body.deadline) : task.deadline;
+
     task = await Task.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, attachments },
+      {
+        title: req.body.title,
+        description: req.body.description,
+        priority: req.body.priority,
+        status: req.body.status,
+        deadline,
+        user: updatedUser,
+        attachments,
+      },
       { new: true }
     );
+
     res.json(task);
   } catch (err) {
     next(err);

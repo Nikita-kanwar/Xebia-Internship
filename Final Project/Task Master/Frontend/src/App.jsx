@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, AuthContext } from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/authContext";
 import { useContext } from "react";
 
 import Home from "./pages/Home";
@@ -16,12 +16,6 @@ function PrivateRoute({ children }) {
   const { isAuthenticated, loading } = useContext(AuthContext);
   if (loading) return <p className="text-center mt-20">Loading...</p>;
   return isAuthenticated ? children : <Navigate to="/login" />;
-}
-
-function AdminRoute({ children }) {
-  const { user, loading } = useContext(AuthContext);
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
-  return user?.role === "admin" ? children : <Navigate to="/dashboard" />;
 }
 
 function App() {
@@ -45,21 +39,10 @@ function App() {
             <Route path="tasks/new" element={<CreateTask />} />
             <Route path="tasks/:id" element={<TaskDetail />} />
             <Route path="tasks/:id/edit" element={<EditTask />} />
-
-            <Route
-              path="users"
-              element={
-                <AdminRoute>
-                  <UserList />
-                </AdminRoute>
-              }
-            />
+            <Route path="users" element={<UserList />} />
           </Route>
 
-          <Route
-            path="*"
-            element={<h1 className="text-center mt-10">404 Not Found</h1>}
-          />
+          <Route path="*" element={<h1 className="text-center mt-10">404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

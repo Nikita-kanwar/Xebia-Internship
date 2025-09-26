@@ -24,7 +24,6 @@ exports.getComments = async (req, res) => {
   }
 };
 
-
 exports.updateComment = async (req, res) => {
   try {
     let comment = await Comment.findById(req.params.commentId);

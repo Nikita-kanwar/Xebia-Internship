@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/authContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Layout({ children }) {
@@ -56,11 +56,7 @@ export default function Layout({ children }) {
 
             {isAuthenticated && (
               <>
-                <Link
-                  to="/"
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2"
-                >
+                <Link to="/" className="block py-2">
                   Home
                 </Link>
                 <Link to="/dashboard" className="hover:text-purple-600">
@@ -68,10 +64,7 @@ export default function Layout({ children }) {
                 </Link>
 
                 <div className="relative">
-                  <button
-                    onClick={() => setProfileOpen((s) => !s)}
-                    className="flex items-center gap-2"
-                  >
+                  <button onClick={() => setProfileOpen((s) => !s)} className="flex items-center gap-2">
                     <Avatar name={user?.name} />
                   </button>
 
@@ -84,19 +77,12 @@ export default function Layout({ children }) {
                         className="absolute right-0 mt-2 w-44 bg-white border rounded-lg shadow-lg"
                       >
                         <div className="p-2">
-                          <p className="text-sm text-gray-500 px-2">
-                            Signed in as
-                          </p>
-                          <p className="text-sm font-semibold px-2 truncate">
-                            {user?.email}
-                          </p>
+                          <p className="text-sm text-gray-500 px-2">Signed in as</p>
+                          <p className="text-sm font-semibold px-2 truncate">{user?.email}</p>
 
                           <div className="border-t my-2" />
 
-                          <button
-                            onClick={handleLogout}
-                            className="w-full text-left px-3 py-2 text-purple-800 hover:bg-gray-100"
-                          >
+                          <button onClick={handleLogout} className="w-full text-left px-3 py-2 text-purple-800 hover:bg-gray-100">
                             Logout
                           </button>
                         </div>
@@ -110,10 +96,7 @@ export default function Layout({ children }) {
 
           <div className="md:hidden flex items-center gap-3">
             {isAuthenticated && <Avatar name={user?.name} />}
-            <button
-              className="text-gray-700"
-              onClick={() => setMenuOpen((s) => !s)}
-            >
+            <button className="text-gray-700" onClick={() => setMenuOpen((s) => !s)}>
               ☰
             </button>
           </div>
@@ -121,50 +104,25 @@ export default function Layout({ children }) {
 
         <AnimatePresence>
           {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="md:hidden bg-gray-50 border-t px-4 py-3"
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="md:hidden bg-gray-50 border-t px-4 py-3">
               {!isAuthenticated ? (
                 <>
-                  <Link
-                    to="/"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-2"
-                  >
+                  <Link to="/" onClick={() => setMenuOpen(false)} className="block py-2">
                     Home
                   </Link>
-                  <Link
-                    to="/login"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-2"
-                  >
+                  <Link to="/login" onClick={() => setMenuOpen(false)} className="block py-2">
                     Login
                   </Link>
-                  <Link
-                    to="/signup"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-2"
-                  >
+                  <Link to="/signup" onClick={() => setMenuOpen(false)} className="block py-2">
                     Sign Up
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link
-                    to="/"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-2"
-                  >
+                  <Link to="/" onClick={() => setMenuOpen(false)} className="block py-2">
                     Home
                   </Link>
-                  <Link
-                    to="/dashboard"
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-2"
-                  >
+                  <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="block py-2">
                     Dashboard
                   </Link>
                   <button
@@ -190,4 +148,4 @@ export default function Layout({ children }) {
       </footer>
     </div>
   );
-} 
+}

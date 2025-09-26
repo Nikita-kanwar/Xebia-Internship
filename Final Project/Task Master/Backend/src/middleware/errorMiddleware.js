@@ -1,6 +1,7 @@
 function errorMiddleware(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).json({ msg: err.message || "Server Error" });
+  const status = err.status || 500;
+  res.status(status).json({ msg: err.message || "Server Error" });
 }
 
 module.exports = errorMiddleware;

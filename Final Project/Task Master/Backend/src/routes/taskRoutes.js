@@ -15,9 +15,13 @@ const commentRoutes = require("./commentRoutes");
 const router = express.Router();
 
 router.post("/", authMiddleware, upload.array("attachments"), createTask);
+
 router.get("/", authMiddleware, getTasks);
+
 router.get("/:id", authMiddleware, getTask);
+
 router.put("/:id", authMiddleware, upload.array("attachments"), updateTask);
+
 router.delete("/:id", authMiddleware, deleteTask);
 
 router.post("/:id/attachments", authMiddleware, upload.array("attachments"), uploadAttachments);
