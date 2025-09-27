@@ -14,10 +14,27 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(helmet());
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+const allowedOrigins = [
+  "http://localhost:5173", 
+  process.env.FRONTEND_URL 
+].filter(Boolean); 
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+app.use(helmet());
+
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 async function createAdminIfNeeded() {
   try {
@@ -25,7 +42,7 @@ async function createAdminIfNeeded() {
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminEmail || !adminPassword) {
-      console.log("Set ADMIN_EMAIL and ADMIN_PASSWORD in .env to enable");
+      console.log("Set ADMIN_EMAIL and ADMIN_PASSWORD in .env to enable admin creation");
       return;
     }
 
@@ -40,7 +57,7 @@ async function createAdminIfNeeded() {
       });
       console.log(`Admin user created: ${adminEmail}`);
     } else {
-      console.log("Admin user already exists.");
+      console.log("ℹAdmin user already exists.");
     }
   } catch (err) {
     console.error("Failed to create admin:", err);
